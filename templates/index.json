@@ -65,7 +65,7 @@
         "columns_mobile": "1",
         "grid_gap": 20,
         "flex_direction": "column",
-        "justify_content": "flex-start",
+        "justify_content": "center",
         "align_items": "stretch",
         "card_text_align": "center",
         "image_ratio": "adapt",
@@ -120,8 +120,8 @@
         "heading": "What Our Customers Say",
         "subheading": "Don't just take our word for it",
         "layout": "three",
-        "background_color": "#f8f9fa",
-        "heading_color": "#333333"
+        "background_color": "#007ace",
+        "heading_color": "#dc3545"
       }
     }
   },
