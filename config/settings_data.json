@@ -18,5 +18,8 @@
     "social_facebook_url": "https://www.facebook.com/SeaToxFB",
     "social_instagram_url": "http://instagram.com/seatoxshop",
     "content_for_index": []
+  },
+  "platform_customizations": {
+    "custom_css": []
   }
 }
