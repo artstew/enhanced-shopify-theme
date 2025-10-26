@@ -8,5 +8,15 @@
  * ------------------------------------------------------------
  */
 {
-  "current": {}
+  "current": {
+    "type_primary_font": "open_sans_n4",
+    "type_secondary_font": "roboto_n4",
+    "max_page_width": "110rem",
+    "min_page_margin": 20,
+    "product_image_size": "large",
+    "product_zoom": false,
+    "social_facebook_url": "https://www.facebook.com/SeaToxFB",
+    "social_instagram_url": "http://instagram.com/seatoxshop",
+    "content_for_index": []
+  }
 }
