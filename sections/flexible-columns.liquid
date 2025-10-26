@@ -1,0 +1,947 @@
+{% comment %}
+  Flexible columns section with customizable column count and blocks
+{% endcomment %}
+
+<section class="flexible-columns section-{{ section.id }}" {{ section.shopify_attributes }}>
+  <div class="flexible-columns__container">
+    {% if section.settings.heading != blank %}
+      <div class="flexible-columns__header">
+        <h2 class="flexible-columns__heading">{{ section.settings.heading }}</h2>
+        {% if section.settings.subheading != blank %}
+          <p class="flexible-columns__subheading">{{ section.settings.subheading }}</p>
+        {% endif %}
+      </div>
+    {% endif %}
+    
+    <div class="flexible-columns__grid flexible-columns__grid--{{ section.settings.columns_desktop }}">
+      {% for block in section.blocks %}
+        <div class="flexible-columns__column" {{ block.shopify_attributes }}>
+          {% case block.type %}
+            {% when 'text' %}
+              <div class="block block--text">
+                {% if block.settings.heading != blank %}
+                  <h3 class="block__heading">{{ block.settings.heading }}</h3>
+                {% endif %}
+                {% if block.settings.text != blank %}
+                  <div class="block__text">{{ block.settings.text }}</div>
+                {% endif %}
+              </div>
+            
+            {% when 'image' %}
+              <div class="block block--image">
+                {% if block.settings.image %}
+                  <img 
+                    src="{{ block.settings.image | image_url: width: 800 }}" 
+                    alt="{{ block.settings.alt | default: block.settings.image.alt }}"
+                    class="block__image"
+                    loading="lazy"
+                  >
+                {% endif %}
+                {% if block.settings.caption != blank %}
+                  <p class="block__caption">{{ block.settings.caption }}</p>
+                {% endif %}
+              </div>
+            
+            {% when 'button' %}
+              <div class="block block--button">
+                {% if block.settings.button_text != blank and block.settings.button_url != blank %}
+                  <a href="{{ block.settings.button_url }}" class="block__button btn btn--{{ block.settings.button_style }}">
+                    {{ block.settings.button_text }}
+                  </a>
+                {% endif %}
+              </div>
+            
+            {% when 'video' %}
+              <div class="block block--video">
+                {% if block.settings.video %}
+                  <video 
+                    class="block__video"
+                    {% if block.settings.autoplay %}autoplay{% endif %}
+                    {% if block.settings.muted %}muted{% endif %}
+                    {% if block.settings.loop %}loop{% endif %}
+                    controls
+                  >
+                    <source src="{{ block.settings.video }}" type="video/mp4">
+                    Your browser does not support the video tag.
+                  </video>
+                {% endif %}
+                {% if block.settings.video_description != blank %}
+                  <p class="block__video-description">{{ block.settings.video_description }}</p>
+                {% endif %}
+              </div>
+              
+            {% when 'icon' %}
+              <div class="block block--icon">
+                {% if block.settings.icon_image %}
+                  <img 
+                    src="{{ block.settings.icon_image | image_url: width: 100 }}" 
+                    alt="{{ block.settings.icon_alt }}"
+                    class="block__icon"
+                  >
+                {% endif %}
+                {% if block.settings.icon_heading != blank %}
+                  <h4 class="block__icon-heading">{{ block.settings.icon_heading }}</h4>
+                {% endif %}
+                {% if block.settings.icon_text != blank %}
+                  <p class="block__icon-text">{{ block.settings.icon_text }}</p>
+                {% endif %}
+              </div>
+              
+            {% when 'spacer' %}
+              <div class="block block--spacer" style="height: {{ block.settings.spacer_height }}px;"></div>
+              
+            {% when 'quote' %}
+              <div class="block block--quote">
+                {% if block.settings.quote_text != blank %}
+                  <blockquote class="block__quote">
+                    "{{ block.settings.quote_text }}"
+                  </blockquote>
+                {% endif %}
+                {% if block.settings.quote_author != blank %}
+                  <cite class="block__quote-author">— {{ block.settings.quote_author }}</cite>
+                {% endif %}
+              </div>
+              
+            {% when 'countdown' %}
+              <div class="block block--countdown" data-countdown="{{ block.settings.countdown_date }}">
+                <div class="countdown__display">
+                  <div class="countdown__item">
+                    <span class="countdown__number" data-days>00</span>
+                    <span class="countdown__label">Days</span>
+                  </div>
+                  <div class="countdown__item">
+                    <span class="countdown__number" data-hours>00</span>
+                    <span class="countdown__label">Hours</span>
+                  </div>
+                  <div class="countdown__item">
+                    <span class="countdown__number" data-minutes>00</span>
+                    <span class="countdown__label">Minutes</span>
+                  </div>
+                  <div class="countdown__item">
+                    <span class="countdown__number" data-seconds>00</span>
+                    <span class="countdown__label">Seconds</span>
+                  </div>
+                </div>
+                {% if block.settings.countdown_text != blank %}
+                  <p class="countdown__text">{{ block.settings.countdown_text }}</p>
+                {% endif %}
+              </div>
+              
+            {% when 'social_media' %}
+              <div class="block block--social">
+                {% if block.settings.social_heading != blank %}
+                  <h4 class="block__social-heading">{{ block.settings.social_heading }}</h4>
+                {% endif %}
+                <div class="social-links">
+                  {% if block.settings.facebook_url != blank %}
+                    <a href="{{ block.settings.facebook_url }}" class="social-link" target="_blank">Facebook</a>
+                  {% endif %}
+                  {% if block.settings.instagram_url != blank %}
+                    <a href="{{ block.settings.instagram_url }}" class="social-link" target="_blank">Instagram</a>
+                  {% endif %}
+                  {% if block.settings.twitter_url != blank %}
+                    <a href="{{ block.settings.twitter_url }}" class="social-link" target="_blank">Twitter</a>
+                  {% endif %}
+                  {% if block.settings.youtube_url != blank %}
+                    <a href="{{ block.settings.youtube_url }}" class="social-link" target="_blank">YouTube</a>
+                  {% endif %}
+                </div>
+              </div>
+              
+            {% when 'newsletter' %}
+              <div class="block block--newsletter">
+                {% if block.settings.newsletter_heading != blank %}
+                  <h4 class="block__newsletter-heading">{{ block.settings.newsletter_heading }}</h4>
+                {% endif %}
+                {% if block.settings.newsletter_text != blank %}
+                  <p class="block__newsletter-text">{{ block.settings.newsletter_text }}</p>
+                {% endif %}
+                {% form 'customer' %}
+                  <div class="newsletter-form">
+                    <input type="email" name="contact[email]" placeholder="{{ block.settings.email_placeholder | default: 'Enter your email' }}" required>
+                    <button type="submit">{{ block.settings.button_text | default: 'Subscribe' }}</button>
+                  </div>
+                {% endform %}
+              </div>
+              
+            {% when 'map' %}
+              <div class="block block--map">
+                {% if block.settings.map_heading != blank %}
+                  <h4 class="block__map-heading">{{ block.settings.map_heading }}</h4>
+                {% endif %}
+                {% if block.settings.map_address != blank %}
+                  <div class="map-container">
+                    <iframe 
+                      src="https://www.google.com/maps/embed/v1/place?key={{ settings.google_maps_api_key }}&q={{ block.settings.map_address | url_encode }}"
+                      width="100%" 
+                      height="{{ block.settings.map_height }}"
+                      style="border:0;" 
+                      allowfullscreen="" 
+                      loading="lazy">
+                    </iframe>
+                  </div>
+                {% endif %}
+                {% if block.settings.map_text != blank %}
+                  <p class="block__map-text">{{ block.settings.map_text }}</p>
+                {% endif %}
+              </div>
+              
+            {% when 'product' %}
+              <div class="block block--product">
+                {% if block.settings.product != blank %}
+                  {% render 'card-product',
+                    card_product: block.settings.product,
+                    media_aspect_ratio: 'portrait',
+                    show_secondary_image: false,
+                    show_vendor: block.settings.show_vendor,
+                    show_rating: false,
+                    lazy_load: true,
+                    show_quick_add: block.settings.show_quick_add
+                  %}
+                {% endif %}
+              </div>
+          {% endcase %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<script>
+// Countdown timer functionality
+document.addEventListener('DOMContentLoaded', function() {
+  const countdownElements = document.querySelectorAll('[data-countdown]');
+  
+  countdownElements.forEach(function(element) {
+    const countdownDate = new Date(element.getAttribute('data-countdown')).getTime();
+    
+    const timer = setInterval(function() {
+      const now = new Date().getTime();
+      const distance = countdownDate - now;
+      
+      if (distance < 0) {
+        clearInterval(timer);
+        element.innerHTML = '<p>Time\'s up!</p>';
+        return;
+      }
+      
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      
+      const daysEl = element.querySelector('[data-days]');
+      const hoursEl = element.querySelector('[data-hours]');
+      const minutesEl = element.querySelector('[data-minutes]');
+      const secondsEl = element.querySelector('[data-seconds]');
+      
+      if (daysEl) daysEl.textContent = days.toString().padStart(2, '0');
+      if (hoursEl) hoursEl.textContent = hours.toString().padStart(2, '0');
+      if (minutesEl) minutesEl.textContent = minutes.toString().padStart(2, '0');
+      if (secondsEl) secondsEl.textContent = seconds.toString().padStart(2, '0');
+    }, 1000);
+  });
+});
+</script>
+
+<style>
+  {% render 'layout-css', section: section %}
+</style>
+
+{% stylesheet %}
+  .flexible-columns {
+    padding: 4rem 2rem;
+    background-color: {{ section.settings.background_color | default: '#ffffff' }};
+  }
+  
+  .flexible-columns__container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .flexible-columns__header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+  
+  .flexible-columns__heading {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: {{ section.settings.heading_color | default: '#333333' }};
+  }
+  
+  .flexible-columns__subheading {
+    font-size: 1.2rem;
+    opacity: 0.8;
+    color: {{ section.settings.text_color | default: '#666666' }};
+  }
+  
+  .flexible-columns__grid {
+    display: grid;
+    gap: {{ section.settings.column_gap }}rem;
+    align-items: {{ section.settings.vertical_alignment }};
+  }
+  
+  /* Grid layouts */
+  .flexible-columns__grid--1 { grid-template-columns: 1fr; }
+  .flexible-columns__grid--2 { grid-template-columns: repeat(2, 1fr); }
+  .flexible-columns__grid--3 { grid-template-columns: repeat(3, 1fr); }
+  .flexible-columns__grid--4 { grid-template-columns: repeat(4, 1fr); }
+  .flexible-columns__grid--5 { grid-template-columns: repeat(5, 1fr); }
+  .flexible-columns__grid--6 { grid-template-columns: repeat(6, 1fr); }
+  
+  .flexible-columns__column {
+    padding: {{ section.settings.column_padding }}rem;
+    background-color: {{ section.settings.column_background | default: 'transparent' }};
+    border-radius: {{ section.settings.column_border_radius }}px;
+    {% if section.settings.column_shadow %}
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    {% endif %}
+  }
+  
+  /* Block styles */
+  .block {
+    margin-bottom: 1rem;
+  }
+  
+  .block:last-child {
+    margin-bottom: 0;
+  }
+  
+  .block__heading {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: {{ section.settings.heading_color | default: '#333333' }};
+  }
+  
+  .block__text {
+    line-height: 1.6;
+    color: {{ section.settings.text_color | default: '#666666' }};
+  }
+  
+  .block__image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+  
+  .block__caption {
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    opacity: 0.8;
+    text-align: center;
+  }
+  
+  .block__button {
+    display: inline-block;
+    padding: 1rem 2rem;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    text-align: center;
+  }
+  
+  .btn--primary {
+    background-color: var(--primary-color, #007ace);
+    color: white;
+  }
+  
+  .btn--secondary {
+    background-color: transparent;
+    border: 2px solid var(--primary-color, #007ace);
+    color: var(--primary-color, #007ace);
+  }
+  
+  .block__video {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+  
+  .block__video-description {
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    opacity: 0.8;
+  }
+  
+  .block__icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 1rem;
+    display: block;
+  }
+  
+  .block__icon-heading {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    text-align: center;
+  }
+  
+  .block__icon-text {
+    text-align: center;
+    line-height: 1.5;
+  }
+  
+  /* Quote block styles */
+  .block__quote {
+    font-size: 1.2rem;
+    font-style: italic;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    border-left: 4px solid var(--primary-color, #007ace);
+    background-color: rgba(0, 122, 206, 0.05);
+  }
+  
+  .block__quote-author {
+    font-weight: 600;
+    font-style: normal;
+  }
+  
+  /* Countdown styles */
+  .countdown__display {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .countdown__item {
+    text-align: center;
+    background-color: var(--primary-color, #007ace);
+    color: white;
+    padding: 1rem;
+    border-radius: 8px;
+    min-width: 60px;
+  }
+  
+  .countdown__number {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 700;
+  }
+  
+  .countdown__label {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+  }
+  
+  .countdown__text {
+    text-align: center;
+    font-weight: 600;
+  }
+  
+  /* Social media styles */
+  .social-links {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  .social-link {
+    padding: 0.5rem 1rem;
+    background-color: var(--primary-color, #007ace);
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: opacity 0.3s ease;
+  }
+  
+  .social-link:hover {
+    opacity: 0.8;
+  }
+  
+  /* Newsletter styles */
+  .newsletter-form {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1rem;
+  }
+  
+  .newsletter-form input {
+    flex: 1;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  .newsletter-form button {
+    padding: 0.75rem 1.5rem;
+    background-color: var(--primary-color, #007ace);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  /* Map styles */
+  .map-container {
+    margin: 1rem 0;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .flexible-columns__grid {
+      grid-template-columns: repeat({{ section.settings.columns_mobile }}, 1fr) !important;
+    }
+    
+    .flexible-columns {
+      padding: 2rem 1rem;
+    }
+    
+    .flexible-columns__heading {
+      font-size: 2rem;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Flexible Columns",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Section Heading",
+      "default": "Flexible Content"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Section Subheading",
+      "default": "Create custom layouts with flexible columns"
+    },
+    {
+      "type": "header",
+      "content": "Layout Settings"
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "min": 1,
+      "max": 6,
+      "step": 1,
+      "label": "Columns on Desktop",
+      "default": 3
+    },
+    {
+      "type": "range",
+      "id": "columns_mobile",
+      "min": 1,
+      "max": 3,
+      "step": 1,
+      "label": "Columns on Mobile",
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "column_gap",
+      "min": 0,
+      "max": 5,
+      "step": 0.5,
+      "unit": "rem",
+      "label": "Column Gap",
+      "default": 2
+    },
+    {
+      "type": "range",
+      "id": "column_padding",
+      "min": 0,
+      "max": 3,
+      "step": 0.5,
+      "unit": "rem",
+      "label": "Column Padding",
+      "default": 1
+    },
+    {
+      "type": "select",
+      "id": "vertical_alignment",
+      "label": "Vertical Alignment",
+      "options": [
+        { "value": "start", "label": "Top" },
+        { "value": "center", "label": "Center" },
+        { "value": "end", "label": "Bottom" },
+        { "value": "stretch", "label": "Stretch" }
+      ],
+      "default": "start"
+    },
+    {
+      "type": "header",
+      "content": "Column Styling"
+    },
+    {
+      "type": "color",
+      "id": "column_background",
+      "label": "Column Background Color",
+      "default": "transparent"
+    },
+    {
+      "type": "range",
+      "id": "column_border_radius",
+      "min": 0,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "label": "Column Border Radius",
+      "default": 8
+    },
+    {
+      "type": "checkbox",
+      "id": "column_shadow",
+      "label": "Add Column Shadow",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Section Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading Color",
+      "default": "#333333"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#666666"
+    },
+    {% render 'layout-settings' %}
+  ],
+  "blocks": [
+    {
+      "type": "text",
+      "name": "Text Block",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text Content",
+          "default": "<p>Add your text content here.</p>"
+        }
+      ]
+    },
+    {
+      "type": "image",
+      "name": "Image Block",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "alt",
+          "label": "Alt Text"
+        },
+        {
+          "type": "text",
+          "id": "caption",
+          "label": "Caption"
+        }
+      ]
+    },
+    {
+      "type": "button",
+      "name": "Button Block",
+      "settings": [
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button Text",
+          "default": "Click Here"
+        },
+        {
+          "type": "url",
+          "id": "button_url",
+          "label": "Button URL"
+        },
+        {
+          "type": "select",
+          "id": "button_style",
+          "label": "Button Style",
+          "options": [
+            { "value": "primary", "label": "Primary" },
+            { "value": "secondary", "label": "Secondary" }
+          ],
+          "default": "primary"
+        }
+      ]
+    },
+    {
+      "type": "video",
+      "name": "Video Block",
+      "settings": [
+        {
+          "type": "video",
+          "id": "video",
+          "label": "Video"
+        },
+        {
+          "type": "textarea",
+          "id": "video_description",
+          "label": "Video Description"
+        },
+        {
+          "type": "checkbox",
+          "id": "autoplay",
+          "label": "Autoplay",
+          "default": false
+        },
+        {
+          "type": "checkbox",
+          "id": "muted",
+          "label": "Muted",
+          "default": true
+        },
+        {
+          "type": "checkbox",
+          "id": "loop",
+          "label": "Loop",
+          "default": false
+        }
+      ]
+    },
+    {
+      "type": "icon",
+      "name": "Icon Block",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon_image",
+          "label": "Icon Image"
+        },
+        {
+          "type": "text",
+          "id": "icon_alt",
+          "label": "Icon Alt Text"
+        },
+        {
+          "type": "text",
+          "id": "icon_heading",
+          "label": "Icon Heading"
+        },
+        {
+          "type": "textarea",
+          "id": "icon_text",
+          "label": "Icon Description"
+        }
+      ]
+    },
+    {
+      "type": "spacer",
+      "name": "Spacer Block",
+      "settings": [
+        {
+          "type": "range",
+          "id": "spacer_height",
+          "min": 10,
+          "max": 200,
+          "step": 10,
+          "unit": "px",
+          "label": "Spacer Height",
+          "default": 50
+        }
+      ]
+    },
+    {
+      "type": "quote",
+      "name": "Quote Block",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "quote_text",
+          "label": "Quote Text",
+          "default": "This is an inspiring quote."
+        },
+        {
+          "type": "text",
+          "id": "quote_author",
+          "label": "Quote Author"
+        }
+      ]
+    },
+    {
+      "type": "countdown",
+      "name": "Countdown Timer",
+      "settings": [
+        {
+          "type": "text",
+          "id": "countdown_date",
+          "label": "Countdown Date",
+          "info": "Format: YYYY-MM-DD HH:MM:SS (e.g., 2025-12-31 23:59:59)"
+        },
+        {
+          "type": "text",
+          "id": "countdown_text",
+          "label": "Countdown Text",
+          "default": "Limited time offer!"
+        }
+      ]
+    },
+    {
+      "type": "social_media",
+      "name": "Social Media Links",
+      "settings": [
+        {
+          "type": "text",
+          "id": "social_heading",
+          "label": "Social Media Heading",
+          "default": "Follow Us"
+        },
+        {
+          "type": "url",
+          "id": "facebook_url",
+          "label": "Facebook URL"
+        },
+        {
+          "type": "url",
+          "id": "instagram_url",
+          "label": "Instagram URL"
+        },
+        {
+          "type": "url",
+          "id": "twitter_url",
+          "label": "Twitter URL"
+        },
+        {
+          "type": "url",
+          "id": "youtube_url",
+          "label": "YouTube URL"
+        }
+      ]
+    },
+    {
+      "type": "newsletter",
+      "name": "Newsletter Signup",
+      "settings": [
+        {
+          "type": "text",
+          "id": "newsletter_heading",
+          "label": "Newsletter Heading",
+          "default": "Stay Updated"
+        },
+        {
+          "type": "textarea",
+          "id": "newsletter_text",
+          "label": "Newsletter Text",
+          "default": "Subscribe to receive the latest news and updates."
+        },
+        {
+          "type": "text",
+          "id": "email_placeholder",
+          "label": "Email Placeholder",
+          "default": "Enter your email address"
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button Text",
+          "default": "Subscribe"
+        }
+      ]
+    },
+    {
+      "type": "map",
+      "name": "Google Map",
+      "settings": [
+        {
+          "type": "text",
+          "id": "map_heading",
+          "label": "Map Heading"
+        },
+        {
+          "type": "textarea",
+          "id": "map_address",
+          "label": "Address",
+          "info": "Enter the address to display on the map"
+        },
+        {
+          "type": "range",
+          "id": "map_height",
+          "min": 200,
+          "max": 600,
+          "step": 50,
+          "unit": "px",
+          "label": "Map Height",
+          "default": 300
+        },
+        {
+          "type": "textarea",
+          "id": "map_text",
+          "label": "Additional Text"
+        }
+      ]
+    },
+    {
+      "type": "product",
+      "name": "Product Block",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_vendor",
+          "label": "Show Vendor",
+          "default": false
+        },
+        {
+          "type": "checkbox",
+          "id": "show_quick_add",
+          "label": "Show Quick Add Button",
+          "default": true
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Flexible Columns",
+      "blocks": [
+        {
+          "type": "text",
+          "settings": {
+            "heading": "Feature One",
+            "text": "<p>Describe your first feature here.</p>"
+          }
+        },
+        {
+          "type": "text",
+          "settings": {
+            "heading": "Feature Two", 
+            "text": "<p>Describe your second feature here.</p>"
+          }
+        },
+        {
+          "type": "text",
+          "settings": {
+            "heading": "Feature Three",
+            "text": "<p>Describe your third feature here.</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

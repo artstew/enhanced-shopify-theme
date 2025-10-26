@@ -104,9 +104,13 @@
 
 {% schema %}
 {
-  "name": "t:announcement_bar.name",
+  "name": "Announcement Bar",
   "tag": "section",
   "class": "section--announcement-bar",
+  "enabled_on": {
+    "groups": ["header", "footer"],
+    "templates": ["*"]
+  },
   "settings": [
     {
       "type": "checkbox",

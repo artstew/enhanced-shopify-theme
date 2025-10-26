@@ -15,34 +15,45 @@
     
     <div class="testimonials__grid">
       {% for block in section.blocks %}
-        <div class="testimonial" {{ block.shopify_attributes }}>
-          {% if block.settings.rating > 0 %}
-            <div class="testimonial__rating">
-              {% for i in (1..5) %}
-                <span class="star {% if i <= block.settings.rating %}star--filled{% endif %}">★</span>
-              {% endfor %}
-            </div>
-          {% endif %}
+        <div class="testimonial testimonial--order-{{ block.settings.element_order }}" {{ block.shopify_attributes }}>
+          {% assign elements = block.settings.element_order | split: '-' %}
           
-          {% if block.settings.quote != blank %}
-            <blockquote class="testimonial__quote">
-              "{{ block.settings.quote }}"
-            </blockquote>
-          {% endif %}
-          
-          <div class="testimonial__author">
-            {% if block.settings.image %}
-              <img src="{{ block.settings.image | image_url: width: 60 }}" alt="{{ block.settings.name }}" class="testimonial__image">
-            {% endif %}
-            <div class="testimonial__details">
-              {% if block.settings.name != blank %}
-                <h4 class="testimonial__name">{{ block.settings.name }}</h4>
-              {% endif %}
-              {% if block.settings.title != blank %}
-                <p class="testimonial__title">{{ block.settings.title }}</p>
-              {% endif %}
-            </div>
-          </div>
+          {% for element in elements %}
+            {% case element %}
+              {% when 'rating' %}
+                {% if block.settings.show_rating and block.settings.rating > 0 %}
+                  <div class="testimonial__rating">
+                    {% for i in (1..5) %}
+                      <span class="star {% if i <= block.settings.rating %}star--filled{% endif %}">★</span>
+                    {% endfor %}
+                  </div>
+                {% endif %}
+              
+              {% when 'quote' %}
+                {% if block.settings.show_quote and block.settings.quote != blank %}
+                  <blockquote class="testimonial__quote">
+                    "{{ block.settings.quote }}"
+                  </blockquote>
+                {% endif %}
+              
+              {% when 'author' %}
+                {% if block.settings.show_author %}
+                  <div class="testimonial__author">
+                    {% if block.settings.show_image and block.settings.image %}
+                      <img src="{{ block.settings.image | image_url: width: 60 }}" alt="{{ block.settings.name }}" class="testimonial__image">
+                    {% endif %}
+                    <div class="testimonial__details">
+                      {% if block.settings.show_name and block.settings.name != blank %}
+                        <h4 class="testimonial__name">{{ block.settings.name }}</h4>
+                      {% endif %}
+                      {% if block.settings.show_title and block.settings.title != blank %}
+                        <p class="testimonial__title">{{ block.settings.title }}</p>
+                      {% endif %}
+                    </div>
+                  </div>
+                {% endif %}
+            {% endcase %}
+          {% endfor %}
         </div>
       {% endfor %}
     </div>
@@ -244,6 +255,64 @@
           "step": 1,
           "label": "Star Rating",
           "default": 5
+        },
+        {
+          "type": "header",
+          "content": "Element Visibility"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_rating",
+          "label": "Show Rating",
+          "default": true
+        },
+        {
+          "type": "checkbox",
+          "id": "show_quote",
+          "label": "Show Quote",
+          "default": true
+        },
+        {
+          "type": "checkbox",
+          "id": "show_author",
+          "label": "Show Author Section",
+          "default": true
+        },
+        {
+          "type": "checkbox",
+          "id": "show_image",
+          "label": "Show Customer Photo",
+          "default": true
+        },
+        {
+          "type": "checkbox",
+          "id": "show_name",
+          "label": "Show Customer Name",
+          "default": true
+        },
+        {
+          "type": "checkbox",
+          "id": "show_title",
+          "label": "Show Customer Title",
+          "default": true
+        },
+        {
+          "type": "header",
+          "content": "Element Order"
+        },
+        {
+          "type": "select",
+          "id": "element_order",
+          "label": "Element Display Order",
+          "options": [
+            { "value": "rating-quote-author", "label": "Rating → Quote → Author" },
+            { "value": "quote-rating-author", "label": "Quote → Rating → Author" },
+            { "value": "author-rating-quote", "label": "Author → Rating → Quote" },
+            { "value": "author-quote-rating", "label": "Author → Quote → Rating" },
+            { "value": "rating-author-quote", "label": "Rating → Author → Quote" },
+            { "value": "quote-author-rating", "label": "Quote → Author → Rating" }
+          ],
+          "default": "rating-quote-author"
         }
       ]
     }
