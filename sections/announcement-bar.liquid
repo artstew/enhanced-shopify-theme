@@ -47,7 +47,7 @@
 </style>
 
 {%- if section.settings.show_announcement_bar -%}
-  <div class="announcement-bar section-{{ section.id }}" id="announcement-bar" role="region" aria-label="{{ 'header.announcement' | t }}">
+  <div class="announcement-bar section-{{ section.id }}" id="announcement-bar" role="region" aria-label="Announcement"
     <div class="announcement-bar__container copy--{{ section.settings.text_size }} {% if section.settings.font_style == 'heading' %}type--heading{% elsif section.settings.font_style == 'accent' %}type--accent{% endif %} {% if section.settings.font_bold %}copy--bold{% endif %}" style="background: {{ section.settings.color_bg }}; color: {{ section.settings.color_text }}; padding-top: {{ section.settings.padding_top_bottom }}px; padding-bottom: {{ section.settings.padding_top_bottom }}px;">
       {%- if section.settings.enable_marquee -%}
         <full-width-element class="announcement-bar__marquee marquee marquee--pause-on-hover" id="announcement-bar">
@@ -107,10 +107,6 @@
   "name": "Announcement Bar",
   "tag": "section",
   "class": "section--announcement-bar",
-  "enabled_on": {
-    "groups": ["header", "footer"],
-    "templates": ["*"]
-  },
   "settings": [
     {
       "type": "checkbox",

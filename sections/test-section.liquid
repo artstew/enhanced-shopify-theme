@@ -1,0 +1,35 @@
+{% comment %}
+  Simple test section to verify section loading
+{% endcomment %}
+
+<section class="test-section" {{ section.shopify_attributes }}>
+  <div style="padding: 2rem; background: #f0f0f0; text-align: center;">
+    <h2>{{ section.settings.title | default: 'Test Section' }}</h2>
+    <p>{{ section.settings.description | default: 'This is a test section to verify Shopify is loading custom sections properly.' }}</p>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Test Section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Test Section"
+    },
+    {
+      "type": "textarea",
+      "id": "description", 
+      "label": "Description",
+      "default": "This is a test section."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Test Section"
+    }
+  ]
+}
+{% endschema %}
