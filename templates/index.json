@@ -24,33 +24,19 @@
         "product_MnHDQK": {
           "type": "product",
           "settings": {
-            "product": ""
+            "product": "the-3p-fulfilled-snowboard"
           }
         },
         "product_gD9VNK": {
           "type": "product",
           "settings": {
-            "product": ""
-          }
-        },
-        "product_d9UpkJ": {
-          "type": "product",
-          "settings": {
-            "product": ""
-          }
-        },
-        "product_c6VNLb": {
-          "type": "product",
-          "settings": {
-            "product": ""
+            "product": "the-collection-snowboard-oxygen"
           }
         }
       },
       "block_order": [
         "product_MnHDQK",
-        "product_gD9VNK",
-        "product_d9UpkJ",
-        "product_c6VNLb"
+        "product_gD9VNK"
       ],
       "name": "Custom Product Grid",
       "settings": {
