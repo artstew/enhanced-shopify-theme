@@ -93,7 +93,15 @@
 
   .product-grid .grid {
     gap: {{ section.settings.grid_gap }}px;
+  }
+
+  /* Grid container alignment */
+  .product-grid .collection {
+    display: flex;
     justify-content: {{ section.settings.justify_content }};
+  }
+
+  .product-grid .grid {
     align-items: {{ section.settings.align_items }};
   }
 
@@ -102,6 +110,7 @@
     text-align: {{ section.settings.card_text_align }};
   }
 
+  /* Only apply flex direction to card content, not the grid */
   .product-grid .card__content {
     display: flex;
     flex-direction: {{ section.settings.flex_direction }};
@@ -111,29 +120,32 @@
   .product-grid .card__information {
     flex-grow: 1;
     display: flex;
-    flex-direction: {{ section.settings.flex_direction }};
+    flex-direction: column;
     justify-content: space-between;
   }
 
-  /* Adjust spacing based on flex direction */
+  /* Horizontal card layout adjustments */
   {%- if section.settings.flex_direction == 'row' or section.settings.flex_direction == 'row-reverse' -%}
     .product-grid .card__content {
-      align-items: center;
+      align-items: flex-start;
     }
     .product-grid .card__information {
-      align-items: center;
-      gap: 1rem;
+      flex-direction: column;
+      padding-left: 1rem;
+    }
+    .product-grid .card__media {
+      flex: 0 0 40%;
+      max-width: 40%;
     }
   {%- endif -%}
 
-  /* Text alignment overrides for specific directions */
-  {%- if section.settings.flex_direction == 'column' or section.settings.flex_direction == 'column-reverse' -%}
-    .product-grid .card__heading,
-    .product-grid .card-information,
-    .product-grid .price {
-      text-align: {{ section.settings.card_text_align }};
-    }
-  {%- endif -%}
+  /* Text alignment for all card content */
+  .product-grid .card__heading,
+  .product-grid .card-information,
+  .product-grid .price,
+  .product-grid .quick-add {
+    text-align: {{ section.settings.card_text_align }};
+  }
 </style>
 
 {% schema %}

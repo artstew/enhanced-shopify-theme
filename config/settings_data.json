@@ -1,12 +1,3 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "current": {
     "type_primary_font": "open_sans_n4",
@@ -17,6 +8,54 @@
     "product_zoom": false,
     "social_facebook_url": "https://www.facebook.com/SeaToxFB",
     "social_instagram_url": "http://instagram.com/seatoxshop",
+    "background_1": "#ffffff",
+    "background_2": "#f8f9fa",
+    "text_1": "#000000",
+    "text_2": "#6c757d",
+    "sale_badge_color_scheme": "accent-1",
+    "sold_out_badge_color_scheme": "inverse",
+    "color_schemes": {
+      "background-1": {
+        "settings": {
+          "background": "#ffffff",
+          "background_gradient": "",
+          "text": "#000000",
+          "button": "#000000",
+          "button_label": "#ffffff",
+          "shadow": "rgba(0,0,0,0.1)"
+        }
+      },
+      "background-2": {
+        "settings": {
+          "background": "#f8f9fa",
+          "background_gradient": "",
+          "text": "#000000", 
+          "button": "#000000",
+          "button_label": "#ffffff",
+          "shadow": "rgba(0,0,0,0.1)"
+        }
+      },
+      "accent-1": {
+        "settings": {
+          "background": "#007ace",
+          "background_gradient": "",
+          "text": "#ffffff",
+          "button": "#ffffff",
+          "button_label": "#007ace",
+          "shadow": "rgba(0,122,206,0.3)"
+        }
+      },
+      "inverse": {
+        "settings": {
+          "background": "#000000",
+          "background_gradient": "",
+          "text": "#ffffff",
+          "button": "#ffffff", 
+          "button_label": "#000000",
+          "shadow": "rgba(0,0,0,0.3)"
+        }
+      }
+    },
     "content_for_index": []
   },
   "platform_customizations": {

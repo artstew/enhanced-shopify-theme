@@ -131,6 +131,59 @@
     ]
   },
   {
+    "name": "Color Schemes",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Background Colors"
+      },
+      {
+        "type": "color_background",
+        "id": "background_1",
+        "label": "Background 1",
+        "default": "#ffffff"
+      },
+      {
+        "type": "color_background", 
+        "id": "background_2",
+        "label": "Background 2",
+        "default": "#f8f9fa"
+      },
+      {
+        "type": "header",
+        "content": "Text Colors"
+      },
+      {
+        "type": "color",
+        "id": "text_1",
+        "label": "Text 1",
+        "default": "#000000"
+      },
+      {
+        "type": "color",
+        "id": "text_2", 
+        "label": "Text 2",
+        "default": "#6c757d"
+      },
+      {
+        "type": "header",
+        "content": "Badge Colors"
+      },
+      {
+        "type": "color_scheme",
+        "id": "sale_badge_color_scheme",
+        "label": "Sale badge",
+        "default": "accent-1"
+      },
+      {
+        "type": "color_scheme",
+        "id": "sold_out_badge_color_scheme", 
+        "label": "Sold out badge",
+        "default": "inverse"
+      }
+    ]
+  },
+  {
     "name": "Header Settings",
     "settings": [
       {
