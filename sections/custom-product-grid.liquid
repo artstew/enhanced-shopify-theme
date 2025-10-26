@@ -91,33 +91,32 @@
     }
   }
 
-  .product-grid .grid {
+  /* Target the product grid directly */
+  #product-grid-{{ section.id }} .product-grid {
     gap: {{ section.settings.grid_gap }}px;
+    align-items: {{ section.settings.align_items }};
   }
 
   /* Grid container alignment */
-  .product-grid .collection {
+  #product-grid-{{ section.id }} .collection {
     display: flex;
     justify-content: {{ section.settings.justify_content }};
   }
 
-  .product-grid .grid {
-    align-items: {{ section.settings.align_items }};
-  }
-
-  .product-grid .card {
+  /* Target cards within this specific product grid */
+  #product-grid-{{ section.id }} .card {
     height: 100%;
     text-align: {{ section.settings.card_text_align }};
   }
 
   /* Only apply flex direction to card content, not the grid */
-  .product-grid .card__content {
+  #product-grid-{{ section.id }} .card__content {
     display: flex;
     flex-direction: {{ section.settings.flex_direction }};
     height: 100%;
   }
 
-  .product-grid .card__information {
+  #product-grid-{{ section.id }} .card__information {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
@@ -126,24 +125,24 @@
 
   /* Horizontal card layout adjustments */
   {%- if section.settings.flex_direction == 'row' or section.settings.flex_direction == 'row-reverse' -%}
-    .product-grid .card__content {
+    #product-grid-{{ section.id }} .card__content {
       align-items: flex-start;
     }
-    .product-grid .card__information {
+    #product-grid-{{ section.id }} .card__information {
       flex-direction: column;
       padding-left: 1rem;
     }
-    .product-grid .card__media {
+    #product-grid-{{ section.id }} .card__media {
       flex: 0 0 40%;
       max-width: 40%;
     }
   {%- endif -%}
 
   /* Text alignment for all card content */
-  .product-grid .card__heading,
-  .product-grid .card-information,
-  .product-grid .price,
-  .product-grid .quick-add {
+  #product-grid-{{ section.id }} .card__heading,
+  #product-grid-{{ section.id }} .card-information,
+  #product-grid-{{ section.id }} .price,
+  #product-grid-{{ section.id }} .quick-add {
     text-align: {{ section.settings.card_text_align }};
   }
 </style>

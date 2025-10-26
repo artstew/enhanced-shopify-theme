@@ -382,8 +382,40 @@
 }
 
 .contains-card--product {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  gap: inherit;
+}
+
+/* Ensure grid column classes work on contains-card--product */
+.contains-card--product.grid--1-col-desktop {
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+
+.contains-card--product.grid--2-col-desktop {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.contains-card--product.grid--3-col-desktop {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.contains-card--product.grid--4-col-desktop {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.contains-card--product.grid--5-col-desktop {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+/* Mobile Grid Columns for contains-card--product */
+@media screen and (max-width: 749px) {
+  .contains-card--product.grid--1-col-tablet-down {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+
+  .contains-card--product.grid--2-col-tablet-down {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 /* Color Schemes */
