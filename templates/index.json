@@ -9,15 +9,6 @@
  */
 {
   "sections": {
-    "simple_hero": {
-      "type": "simple-hero",
-      "settings": {
-        "heading": "Welcome to SeaTox Store",
-        "subheading": "Discover premium products with exceptional quality and service",
-        "button_text": "Shop Now",
-        "button_url": "/collections/all"
-      }
-    },
     "custom_product_grid_gQyf7K": {
       "type": "custom-product-grid",
       "blocks": {
@@ -123,14 +114,20 @@
         "text_alignment": "center",
         "overlay_enable": false,
         "overlay_color": "#000000",
-        "overlay_opacity": 50
+        "overlay_opacity": 50,
+        "section_width": "full-width",
+        "content_alignment": "center",
+        "padding_top": 60,
+        "padding_bottom": 60,
+        "content_gap": 24,
+        "border_radius": 0,
+        "enable_shadow": false
       }
     }
   },
   "order": [
-    "simple_hero",
+    "hero_tyzRT7",
     "custom_product_grid_gQyf7K",
-    "testimonials_ViUCCc",
-    "hero_tyzRT7"
+    "testimonials_ViUCCc"
   ]
 }
