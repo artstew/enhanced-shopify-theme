@@ -123,11 +123,20 @@
         "background_color": "#007ace",
         "heading_color": "#dc3545"
       }
+    },
+    "custom_section_myfCeH": {
+      "type": "custom-section",
+      "name": "Custom Section",
+      "settings": {
+        "padding_top": 40,
+        "padding_bottom": 40
+      }
     }
   },
   "order": [
     "hero_tyzRT7",
     "custom_product_grid_gQyf7K",
-    "testimonials_ViUCCc"
+    "testimonials_ViUCCc",
+    "custom_section_myfCeH"
   ]
 }
