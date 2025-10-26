@@ -48,5 +48,115 @@
     "submit": "Search",
     "no_results_html": "No results found for {{ terms }}",
     "results_for_html": "{{ count }} results found for {{ terms }}"
+  },
+  "sections": {
+    "all": {
+      "colors": {
+        "label": "Color scheme",
+        "settings": {
+          "header": {
+            "content": "Colors"
+          }
+        }
+      },
+      "padding": {
+        "section_padding_heading": "Section padding",
+        "padding_top": "Top padding",
+        "padding_bottom": "Bottom padding"
+      }
+    },
+    "featured_product": {
+      "onboarding": {
+        "title": "Example product title",
+        "no_product_selected": "No product selected"
+      }
+    }
+  },
+  "products": {
+    "product": {
+      "add_to_cart": "Add to cart",
+      "sold_out": "Sold out",
+      "unavailable": "Unavailable",
+      "on_sale": "Sale",
+      "choose_options": "Choose options",
+      "choose_product_options": "Choose options for {{ product_name }}",
+      "price": {
+        "from_price_html": "From {{ price }}",
+        "regular_price": "Regular price",
+        "sale_price": "Sale price",
+        "unit_price": "Unit price"
+      }
+    }
+  },
+  "accessibility": {
+    "vendor": "Vendor",
+    "close": "Close",
+    "unit_price_separator": "per",
+    "star_reviews_info": "{{ rating_value }} out of {{ rating_max }} stars",
+    "total_reviews": "total reviews"
+  },
+  "general": {
+    "header": "Header"
+  },
+  "labels": {
+    "menu": "Menu"
+  },
+  "text": {
+    "label": "Text"
+  },
+  "link": {
+    "label_optional": "Link (optional)"
+  },
+  "background": {
+    "label": "Background"
+  },
+  "font_color": {
+    "label": "Text color"
+  },
+  "typography": {
+    "settings": {
+      "font_style": {
+        "label": "Font style",
+        "option_body": "Body",
+        "option_heading": "Heading",
+        "option_accent": "Accent"
+      },
+      "bold_font": {
+        "label": "Bold"
+      }
+    }
+  },
+  "announcement_bar": {
+    "name": "Announcement bar",
+    "settings": {
+      "show_announcement_bar": {
+        "label": "Show announcement bar"
+      }
+    }
+  },
+  "header": {
+    "announcement": "Announcement"
+  },
+  "marquee": {
+    "header": "Marquee settings",
+    "settings": {
+      "enable_marquee": {
+        "label": "Enable marquee"
+      },
+      "marquee_speed": {
+        "label": "Marquee speed"
+      },
+      "marquee_gap": {
+        "label": "Marquee gap"
+      }
+    }
+  },
+  "spacing": {
+    "name": "Spacing",
+    "settings": {
+      "padding_top_bottom": {
+        "label": "Top and bottom padding"
+      }
+    }
   }
 }
