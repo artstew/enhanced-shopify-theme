@@ -9,6 +9,33 @@
  */
 {
   "sections": {
+    "hero_tyzRT7": {
+      "type": "hero",
+      "name": "Hero Section",
+      "settings": {
+        "heading": "Welcome to Our Store",
+        "subheading": "Discover amazing products and exceptional service",
+        "button_text": "Shop Now",
+        "button_url": "",
+        "button_style": "primary",
+        "height": "medium",
+        "background_image": "shopify://shop_images/theme_cover_image.jpg",
+        "background_position": "center center",
+        "background_color": "#f8f9fa",
+        "text_color": "#333333",
+        "text_alignment": "center",
+        "overlay_enable": false,
+        "overlay_color": "#000000",
+        "overlay_opacity": 50,
+        "section_width": "full-width",
+        "content_alignment": "center",
+        "padding_top": 60,
+        "padding_bottom": 60,
+        "content_gap": 24,
+        "border_radius": 0,
+        "enable_shadow": false
+      }
+    },
     "custom_product_grid_gQyf7K": {
       "type": "custom-product-grid",
       "blocks": {
@@ -95,33 +122,6 @@
         "layout": "three",
         "background_color": "#f8f9fa",
         "heading_color": "#333333"
-      }
-    },
-    "hero_tyzRT7": {
-      "type": "hero",
-      "name": "Hero Section",
-      "settings": {
-        "heading": "Welcome to Our Store",
-        "subheading": "Discover amazing products and exceptional service",
-        "button_text": "Shop Now",
-        "button_url": "",
-        "button_style": "primary",
-        "height": "medium",
-        "background_image": "shopify://shop_images/theme_cover_image.jpg",
-        "background_position": "center center",
-        "background_color": "#f8f9fa",
-        "text_color": "#333333",
-        "text_alignment": "center",
-        "overlay_enable": false,
-        "overlay_color": "#000000",
-        "overlay_opacity": 50,
-        "section_width": "full-width",
-        "content_alignment": "center",
-        "padding_top": 60,
-        "padding_bottom": 60,
-        "content_gap": 24,
-        "border_radius": 0,
-        "enable_shadow": false
       }
     }
   },
