@@ -1,0 +1,201 @@
+{% doc %}
+  Renders a feature block with icon, heading, and description.
+
+  @example
+  {% content_for 'block', type: 'feature', id: 'feature' %}
+{% enddoc %}
+
+<div
+  class="feature feature--{{ block.settings.layout }}"
+  style="text-align: {{ block.settings.text_alignment }};"
+  {{ block.shopify_attributes }}
+>
+  {% if block.settings.icon_image or block.settings.icon_text != blank %}
+    <div class="feature__icon" style="color: {{ block.settings.icon_color }};">
+      {% if block.settings.icon_image %}
+        <img 
+          src="{{ block.settings.icon_image | image_url: width: 80 }}" 
+          alt="{{ block.settings.heading }}"
+          width="80"
+          height="80"
+        >
+      {% elsif block.settings.icon_text != blank %}
+        <span class="feature__icon-text">{{ block.settings.icon_text }}</span>
+      {% endif %}
+    </div>
+  {% endif %}
+  
+  <div class="feature__content">
+    {% if block.settings.heading != blank %}
+      <h3 class="feature__heading">{{ block.settings.heading }}</h3>
+    {% endif %}
+    
+    {% if block.settings.description != blank %}
+      <div class="feature__description">{{ block.settings.description }}</div>
+    {% endif %}
+    
+    {% if block.settings.link_text != blank and block.settings.link_url != blank %}
+      <a href="{{ block.settings.link_url }}" class="feature__link">
+        {{ block.settings.link_text }}
+        <span class="feature__arrow">→</span>
+      </a>
+    {% endif %}
+  </div>
+</div>
+
+{% stylesheet %}
+  .feature {
+    padding: 2rem;
+    border-radius: 8px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .feature:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  }
+  
+  .feature--vertical {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .feature--horizontal {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+    text-align: left;
+  }
+  
+  .feature__icon {
+    margin-bottom: 1.5rem;
+    flex-shrink: 0;
+  }
+  
+  .feature--horizontal .feature__icon {
+    margin-bottom: 0;
+  }
+  
+  .feature__icon img {
+    max-width: 80px;
+    height: auto;
+  }
+  
+  .feature__icon-text {
+    font-size: 3rem;
+    font-weight: 300;
+    line-height: 1;
+  }
+  
+  .feature__heading {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: #333;
+  }
+  
+  .feature__description {
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+  
+  .feature__link {
+    color: var(--primary-color, #007ace);
+    text-decoration: none;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: color 0.3s ease;
+  }
+  
+  .feature__link:hover {
+    color: #0056b3;
+  }
+  
+  .feature__arrow {
+    transition: transform 0.3s ease;
+  }
+  
+  .feature__link:hover .feature__arrow {
+    transform: translateX(5px);
+  }
+  
+  @media (max-width: 768px) {
+    .feature--horizontal {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    
+    .feature--horizontal .feature__icon {
+      margin-bottom: 1rem;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Feature",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Feature Title"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "<p>Describe your feature here. Explain the benefits and value it provides to your customers.</p>"
+    },
+    {
+      "type": "image_picker",
+      "id": "icon_image",
+      "label": "Icon Image"
+    },
+    {
+      "type": "text",
+      "id": "icon_text",
+      "label": "Icon Text (e.g., emoji or symbol)",
+      "info": "Used if no icon image is selected"
+    },
+    {
+      "type": "color",
+      "id": "icon_color",
+      "label": "Icon Color",
+      "default": "#007ace"
+    },
+    {
+      "type": "text",
+      "id": "link_text",
+      "label": "Link Text"
+    },
+    {
+      "type": "url",
+      "id": "link_url",
+      "label": "Link URL"
+    },
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "Layout",
+      "options": [
+        { "value": "vertical", "label": "Vertical (Icon above text)" },
+        { "value": "horizontal", "label": "Horizontal (Icon beside text)" }
+      ],
+      "default": "vertical"
+    },
+    {
+      "type": "text_alignment",
+      "id": "text_alignment",
+      "label": "Text Alignment",
+      "default": "center"
+    }
+  ],
+  "presets": [{ "name": "Feature" }]
+}
+{% endschema %}

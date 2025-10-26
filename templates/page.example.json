@@ -1,0 +1,147 @@
+{
+  "sections": {
+    "breadcrumbs": {
+      "type": "custom-section",
+      "settings": {
+        "padding_top": 20,
+        "padding_bottom": 10
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "settings": {
+            "text": "{% render 'breadcrumbs' %}",
+            "text_style": "text--normal",
+            "alignment": "left"
+          }
+        }
+      ]
+    },
+    "page_header": {
+      "type": "hero",
+      "settings": {
+        "heading": "{{ page.title }}",
+        "subheading": "{{ page.content | strip_html | truncate: 200 }}",
+        "height": "medium",
+        "background_color": "#f8f9fa",
+        "text_color": "#333333",
+        "text_alignment": "center"
+      }
+    },
+    "main": {
+      "type": "page",
+      "settings": {}
+    },
+    "content_blocks": {
+      "type": "custom-section",
+      "settings": {
+        "padding_top": 60,
+        "padding_bottom": 60
+      },
+      "blocks": [
+        {
+          "type": "image-with-text",
+          "settings": {
+            "heading": "Our Story",
+            "text": "<p>This is where you can tell your brand story, share your mission, or provide detailed information about your services. Use this section to connect with your customers on a personal level.</p>",
+            "layout": "side-by-side",
+            "image_position": "image-right",
+            "text_alignment": "left"
+          }
+        },
+        {
+          "type": "spacer",
+          "settings": {
+            "height": 60,
+            "show_divider": false
+          }
+        },
+        {
+          "type": "text",
+          "settings": {
+            "text": "<h3>Key Features</h3><p>Highlight the most important aspects of your business or products here. This flexible layout allows you to present information in an engaging and organized way.</p>",
+            "text_style": "text--normal",
+            "alignment": "center"
+          }
+        },
+        {
+          "type": "spacer",
+          "settings": {
+            "height": 40,
+            "show_divider": false
+          }
+        }
+      ]
+    },
+    "features_grid": {
+      "type": "custom-section",
+      "settings": {
+        "padding_top": 0,
+        "padding_bottom": 60
+      },
+      "blocks": [
+        {
+          "type": "feature",
+          "settings": {
+            "heading": "Expert Team",
+            "description": "<p>Our experienced professionals are dedicated to providing you with the best service possible.</p>",
+            "icon_text": "👥",
+            "layout": "horizontal",
+            "text_alignment": "left"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "heading": "Quality Assurance",
+            "description": "<p>Every product goes through rigorous quality checks to ensure it meets our high standards.</p>",
+            "icon_text": "✅",
+            "layout": "horizontal",
+            "text_alignment": "left"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "heading": "Customer Focus",
+            "description": "<p>Your satisfaction is our priority. We're here to support you every step of the way.</p>",
+            "icon_text": "🎯",
+            "layout": "horizontal",
+            "text_alignment": "left"
+          }
+        }
+      ]
+    },
+    "call_to_action": {
+      "type": "custom-section",
+      "settings": {
+        "padding_top": 40,
+        "padding_bottom": 40
+      },
+      "blocks": [
+        {
+          "type": "call-to-action",
+          "settings": {
+            "heading": "Ready to Get Started?",
+            "text": "<p>Contact us today to learn more about how we can help you achieve your goals.</p>",
+            "button_text": "Contact Us",
+            "button_url": "/pages/contact",
+            "button_style": "primary",
+            "style": "boxed",
+            "background_color": "#007ace",
+            "text_color": "#ffffff",
+            "text_alignment": "center"
+          }
+        }
+      ]
+    }
+  },
+  "order": [
+    "breadcrumbs",
+    "page_header", 
+    "main", 
+    "content_blocks",
+    "features_grid",
+    "call_to_action"
+  ]
+}

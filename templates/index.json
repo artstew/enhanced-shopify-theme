@@ -1,0 +1,294 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero",
+      "settings": {
+        "heading": "Welcome to SeaTox Store",
+        "subheading": "Discover premium products with exceptional quality and service",
+        "button_text": "Shop Now",
+        "button_url": "/collections/all",
+        "button_style": "primary",
+        "height": "large",
+        "background_color": "#007ace",
+        "text_color": "#ffffff",
+        "text_alignment": "center",
+        "overlay_enable": false
+      }
+    },
+    "features_intro": {
+      "type": "custom-section",
+      "settings": {
+        "padding_top": 60,
+        "padding_bottom": 40
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "settings": {
+            "text": "<h2>Why Choose SeaTox?</h2><p>We're committed to providing you with the best shopping experience through quality products, excellent service, and innovative solutions.</p>",
+            "text_style": "text--normal",
+            "alignment": "center"
+          }
+        }
+      ]
+    },  
+    "features": {
+      "type": "custom-section",
+      "settings": {
+        "padding_top": 20,
+        "padding_bottom": 60
+      },
+      "blocks": [
+        {
+          "type": "feature",
+          "settings": {
+            "heading": "Premium Quality",
+            "description": "<p>All our products are carefully selected and tested to ensure the highest quality standards.</p>",
+            "icon_text": "⭐",
+            "icon_color": "#007ace",
+            "layout": "vertical",
+            "text_alignment": "center"
+          }
+        },
+        {
+          "type": "feature", 
+          "settings": {
+            "heading": "Fast Shipping",
+            "description": "<p>Get your orders quickly with our expedited shipping options and reliable delivery network.</p>",
+            "icon_text": "🚚",
+            "icon_color": "#007ace",
+            "layout": "vertical",
+            "text_alignment": "center"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "heading": "24/7 Support",
+            "description": "<p>Our customer service team is always ready to help you with any questions or concerns.</p>",
+            "icon_text": "💬",
+            "icon_color": "#007ace",
+            "layout": "vertical",
+            "text_alignment": "center"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "heading": "Secure Payment",
+            "description": "<p>Shop with confidence using our secure payment processing and data protection.</p>",
+            "icon_text": "🔒",
+            "icon_color": "#007ace",
+            "layout": "vertical",
+            "text_alignment": "center"
+          }
+        }
+      ]
+    },
+    "spacer_1": {
+      "type": "custom-section",
+      "blocks": [
+        {
+          "type": "spacer",
+          "settings": {
+            "height": 40,
+            "show_divider": true,
+            "divider_style": "1px solid",
+            "divider_color": "#e0e0e0",
+            "divider_width": 50
+          }
+        }
+      ]
+    },
+    "about_section": {
+      "type": "custom-section",
+      "settings": {
+        "padding_top": 60,
+        "padding_bottom": 60
+      },
+      "blocks": [
+        {
+          "type": "image-with-text",
+          "settings": {
+            "heading": "About SeaTox",
+            "text": "<p>Founded with a passion for quality and innovation, SeaTox has been serving customers worldwide with premium products and exceptional service. Our commitment to excellence drives everything we do, from product selection to customer care.</p><p>We believe in building lasting relationships with our customers by providing not just products, but complete solutions that enhance your lifestyle and meet your needs.</p>",
+            "button_text": "Learn More",
+            "button_url": "/pages/about-us",
+            "button_style": "primary",
+            "layout": "side-by-side",
+            "image_position": "image-left",
+            "text_alignment": "left"
+          }
+        }
+      ]
+    },
+    "cta_section": {
+      "type": "custom-section",
+      "settings": {
+        "padding_top": 40,
+        "padding_bottom": 40
+      },
+      "blocks": [
+        {
+          "type": "call-to-action",
+          "settings": {
+            "heading": "Ready to Experience the Difference?",
+            "text": "<p>Join thousands of satisfied customers who trust SeaTox for their needs. Start shopping today and discover why we're the preferred choice.</p>",
+            "button_text": "Start Shopping",
+            "button_url": "/collections/all",
+            "button_style": "white",
+            "style": "gradient",
+            "text_alignment": "center"
+          }
+        }
+      ]
+    },
+    "testimonials": {
+      "type": "testimonials",
+      "settings": {
+        "heading": "What Our Customers Say",
+        "subheading": "Don't just take our word for it - hear from real customers",
+        "layout": "three",
+        "background_color": "#f8f9fa",
+        "heading_color": "#333333"
+      },
+      "blocks": [
+        {
+          "type": "testimonial",
+          "settings": {
+            "quote": "Outstanding quality and service! I've been a customer for over two years and they never disappoint. Fast shipping and excellent customer support.",
+            "name": "Sarah Johnson",
+            "title": "Verified Customer",
+            "rating": 5
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "quote": "The products exceeded my expectations. Great attention to detail and the ordering process was seamless. Highly recommend SeaTox!",
+            "name": "Michael Chen", 
+            "title": "Repeat Customer",
+            "rating": 5
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "quote": "Professional service from start to finish. The team went above and beyond to ensure I got exactly what I needed. Five stars!",
+            "name": "Emily Davis",
+            "title": "Business Owner", 
+            "rating": 5
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "quote": "Incredible value for money and the quality is unmatched. I've recommended SeaTox to all my friends and colleagues.",
+            "name": "David Wilson",
+            "title": "Happy Customer",
+            "rating": 5
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "quote": "The customer service team is amazing! They helped me choose the perfect products and answered all my questions promptly.",
+            "name": "Lisa Thompson",
+            "title": "New Customer",
+            "rating": 5
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "quote": "Fast delivery, great packaging, and exactly as described. SeaTox has become my go-to store for all my needs.",
+            "name": "Robert Martinez",
+            "title": "Loyal Customer",
+            "rating": 5
+          }
+        }
+      ]
+    },
+    "faq": {
+      "type": "faq",
+      "settings": {
+        "heading": "Frequently Asked Questions",
+        "subheading": "Find answers to common questions about our products and services",
+        "background_color": "#ffffff",
+        "heading_color": "#333333",
+        "accent_color": "#007ace"
+      },
+      "blocks": [
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "What is your shipping policy?",
+            "answer": "<p>We offer free standard shipping on orders over $50. Standard shipping typically takes 3-5 business days, while expedited shipping options are available for faster delivery. International shipping is available to most countries.</p>"
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "What is your return policy?",
+            "answer": "<p>We offer a 30-day return policy for unused items in their original packaging. Items must be returned in the same condition as received. Return shipping costs may apply unless the item was defective or incorrect.</p>"
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "Do you offer customer support?",
+            "answer": "<p>Yes! Our customer support team is available 24/7 via email, live chat, and phone. We're here to help with any questions about products, orders, or general inquiries.</p>"
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "Are your products guaranteed?",
+            "answer": "<p>All our products come with a quality guarantee. If you're not satisfied with your purchase, we'll work with you to make it right through returns, exchanges, or refunds as appropriate.</p>"
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "How can I track my order?",
+            "answer": "<p>Once your order ships, you'll receive a tracking number via email. You can use this number to track your package on our tracking page or directly with the shipping carrier.</p>"
+          }
+        }
+      ]
+    },
+    "newsletter_signup": {
+      "type": "custom-section",
+      "settings": {
+        "padding_top": 60,
+        "padding_bottom": 60
+      },
+      "blocks": [
+        {
+          "type": "call-to-action",
+          "settings": {
+            "heading": "Stay in the Loop",
+            "text": "<p>Subscribe to our newsletter and be the first to know about new products, special offers, and exclusive deals.</p>",
+            "button_text": "Subscribe Now",
+            "button_url": "/pages/newsletter",
+            "button_style": "primary",
+            "style": "simple",
+            "background_color": "#f8f9fa",
+            "text_color": "#333333",
+            "text_alignment": "center"
+          }
+        }
+      ]
+    }
+  },
+  "order": [
+    "hero", 
+    "features_intro",
+    "features", 
+    "spacer_1",
+    "about_section",
+    "cta_section",
+    "testimonials", 
+    "faq",
+    "newsletter_signup"
+  ]
+}

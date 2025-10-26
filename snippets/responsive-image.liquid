@@ -1,0 +1,61 @@
+{% comment %}
+  Renders a responsive image with lazy loading and proper alt text
+
+  Accepts:
+  - image: {Object} Image object
+  - width: {Number} Maximum width (optional, default: 800)
+  - height: {Number} Maximum height (optional)
+  - alt: {String} Alt text (optional, falls back to image.alt)
+  - class: {String} CSS classes (optional)
+  - loading: {String} Loading behavior - 'lazy' or 'eager' (optional, default: 'lazy')
+  - sizes: {String} Sizes attribute (optional)
+
+  Usage:
+  {% render 'responsive-image', 
+     image: section.settings.image, 
+     width: 600, 
+     alt: 'Product image',
+     class: 'my-image-class' %}
+{% endcomment %}
+
+{% assign image_width = width | default: 800 %}
+{% assign image_loading = loading | default: 'lazy' %}
+{% assign image_alt = alt | default: image.alt | default: '' %}
+{% assign image_class = class | default: '' %}
+
+{% if image %}
+  <img 
+    src="{{ image | image_url: width: image_width }}"
+    {% if height %}
+      srcset="
+        {{ image | image_url: width: 400, height: height }} 400w,
+        {{ image | image_url: width: 600, height: height }} 600w,
+        {{ image | image_url: width: 800, height: height }} 800w,
+        {{ image | image_url: width: 1200, height: height }} 1200w
+      "
+    {% else %}
+      srcset="
+        {{ image | image_url: width: 400 }} 400w,
+        {{ image | image_url: width: 600 }} 600w,
+        {{ image | image_url: width: 800 }} 800w,
+        {{ image | image_url: width: 1200 }} 1200w
+      "
+    {% endif %}
+    {% if sizes %}
+      sizes="{{ sizes }}"
+    {% else %}
+      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+    {% endif %}
+    alt="{{ image_alt }}"
+    {% if image_class != blank %}class="{{ image_class }}"{% endif %}
+    {% if height %}
+      width="{{ image_width }}"
+      height="{{ height }}"
+    {% endif %}
+    loading="{{ image_loading }}"
+  >
+{% else %}
+  <div class="placeholder-image {{ image_class }}">
+    <span>No image</span>
+  </div>
+{% endif %}

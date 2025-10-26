@@ -1,0 +1,253 @@
+{% comment %}
+  FAQ section with accordion-style expandable questions
+{% endcomment %}
+
+<section class="faq" {{ section.shopify_attributes }}>
+  <div class="faq__container">
+    {% if section.settings.heading != blank %}
+      <div class="faq__header">
+        <h2 class="faq__heading">{{ section.settings.heading }}</h2>
+        {% if section.settings.subheading != blank %}
+          <p class="faq__subheading">{{ section.settings.subheading }}</p>
+        {% endif %}
+      </div>
+    {% endif %}
+    
+    <div class="faq__list">
+      {% for block in section.blocks %}
+        <div class="faq__item" {{ block.shopify_attributes }}>
+          <button class="faq__question" type="button" aria-expanded="false">
+            <span>{{ block.settings.question }}</span>
+            <span class="faq__icon">+</span>
+          </button>
+          <div class="faq__answer">
+            <div class="faq__answer-content">
+              {{ block.settings.answer }}
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const faqQuestions = document.querySelectorAll('.faq__question');
+    
+    faqQuestions.forEach(question => {
+        question.addEventListener('click', function() {
+            const faqItem = this.parentElement;
+            const answer = faqItem.querySelector('.faq__answer');
+            const icon = this.querySelector('.faq__icon');
+            const isExpanded = this.getAttribute('aria-expanded') === 'true';
+            
+            // Close all other FAQ items
+            faqQuestions.forEach(otherQuestion => {
+                if (otherQuestion !== this) {
+                    otherQuestion.setAttribute('aria-expanded', 'false');
+                    otherQuestion.parentElement.classList.remove('faq__item--active');
+                    otherQuestion.querySelector('.faq__icon').textContent = '+';
+                }
+            });
+            
+            // Toggle current FAQ item
+            if (isExpanded) {
+                this.setAttribute('aria-expanded', 'false');
+                faqItem.classList.remove('faq__item--active');
+                icon.textContent = '+';
+            } else {
+                this.setAttribute('aria-expanded', 'true');
+                faqItem.classList.add('faq__item--active');
+                icon.textContent = '−';
+            }
+        });
+    });
+});
+</script>
+
+{% stylesheet %}
+  .faq {
+    padding: 4rem 2rem;
+    background-color: {{ section.settings.background_color | default: '#ffffff' }};
+  }
+  
+  .faq__container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .faq__header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+  
+  .faq__heading {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: {{ section.settings.heading_color | default: '#333' }};
+  }
+  
+  .faq__subheading {
+    font-size: 1.1rem;
+    color: #666;
+  }
+  
+  .faq__list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .faq__item {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: box-shadow 0.3s ease;
+  }
+  
+  .faq__item:hover {
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+  
+  .faq__question {
+    width: 100%;
+    padding: 1.5rem;
+    background: none;
+    border: none;
+    text-align: left;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #333;
+    transition: background-color 0.3s ease;
+  }
+  
+  .faq__question:hover {
+    background-color: #f8f9fa;
+  }
+  
+  .faq__icon {
+    font-size: 1.5rem;
+    font-weight: 300;
+    color: {{ section.settings.accent_color | default: '#007ace' }};
+    transition: transform 0.3s ease;
+  }
+  
+  .faq__item--active .faq__question {
+    background-color: #f8f9fa;
+  }
+  
+  .faq__answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+  
+  .faq__item--active .faq__answer {
+    max-height: 500px;
+  }
+  
+  .faq__answer-content {
+    padding: 0 1.5rem 1.5rem 1.5rem;
+    color: #666;
+    line-height: 1.6;
+  }
+  
+  @media (max-width: 768px) {
+    .faq { padding: 2rem 1rem; }
+    .faq__heading { font-size: 2rem; }
+    .faq__question { padding: 1rem; font-size: 1rem; }
+    .faq__answer-content { padding: 0 1rem 1rem 1rem; }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "FAQ",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Section Heading",
+      "default": "Frequently Asked Questions"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Section Subheading",
+      "default": "Find answers to common questions below"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading Color",
+      "default": "#333333"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent Color",
+      "default": "#007ace"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "faq_item",
+      "name": "FAQ Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question",
+          "default": "What is your return policy?"
+        },
+        {
+          "type": "richtext",
+          "id": "answer",
+          "label": "Answer",
+          "default": "<p>We offer a 30-day return policy for all unused items in their original packaging.</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "FAQ",
+      "blocks": [
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "What is your shipping policy?",
+            "answer": "<p>We offer free shipping on orders over $50. Standard shipping takes 3-5 business days.</p>"
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "Do you offer international shipping?",
+            "answer": "<p>Yes, we ship worldwide. International shipping rates and delivery times vary by location.</p>"
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "How can I track my order?",
+            "answer": "<p>Once your order ships, you'll receive a tracking number via email. You can use this to track your package.</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

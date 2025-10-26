@@ -1,0 +1,91 @@
+{% doc %}
+  Renders a spacer block for controlling vertical spacing.
+
+  @example
+  {% content_for 'block', type: 'spacer', id: 'spacer' %}
+{% enddoc %}
+
+<div
+  class="spacer"
+  style="height: {{ block.settings.height }}px;"
+  {{ block.shopify_attributes }}
+>
+  {% if block.settings.show_divider %}
+    <div class="spacer__divider" style="border-color: {{ block.settings.divider_color }};"></div>
+  {% endif %}
+</div>
+
+{% stylesheet %}
+  .spacer {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .spacer__divider {
+    width: {{ block.settings.divider_width }}%;
+    height: 1px;
+    border-top: {{ block.settings.divider_style }};
+    opacity: 0.3;
+  }
+  
+  @media (max-width: 768px) {
+    .spacer {
+      height: calc({{ block.settings.height }}px * 0.7) !important;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Spacer",
+  "settings": [
+    {
+      "type": "range",
+      "id": "height",
+      "min": 10,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "label": "Spacer Height",
+      "default": 50
+    },
+    {
+      "type": "checkbox",
+      "id": "show_divider",
+      "label": "Show Divider Line",
+      "default": false
+    },
+    {
+      "type": "select",
+      "id": "divider_style",
+      "label": "Divider Style",
+      "options": [
+        { "value": "1px solid", "label": "Solid" },
+        { "value": "1px dashed", "label": "Dashed" },
+        { "value": "1px dotted", "label": "Dotted" },
+        { "value": "2px solid", "label": "Thick" }
+      ],
+      "default": "1px solid"
+    },
+    {
+      "type": "color",
+      "id": "divider_color",
+      "label": "Divider Color",
+      "default": "#e0e0e0"
+    },
+    {
+      "type": "range",
+      "id": "divider_width",
+      "min": 10,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "label": "Divider Width",
+      "default": 50
+    }
+  ],
+  "presets": [{ "name": "Spacer" }]
+}
+{% endschema %}

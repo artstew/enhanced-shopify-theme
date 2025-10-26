@@ -1,0 +1,149 @@
+{
+  "sections": {
+    "page_header": {
+      "type": "hero",
+      "settings": {
+        "heading": "{{ page.title }}",
+        "subheading": "Explore our visual showcase",
+        "height": "medium",
+        "background_color": "#f8f9fa",
+        "text_color": "#333333",
+        "text_alignment": "center"
+      }
+    },
+    "main": {
+      "type": "page",
+      "settings": {}
+    },
+    "gallery_masonry": {
+      "type": "gallery",
+      "settings": {
+        "heading": "Masonry Gallery",
+        "subheading": "A dynamic layout that creates visual interest",
+        "layout": "masonry",
+        "show_overlay": true,
+        "show_captions_below": false,
+        "background_color": "#ffffff",
+        "heading_color": "#333333",
+        "accent_color": "#007ace"
+      },
+      "blocks": [
+        {
+          "type": "image",
+          "settings": {
+            "caption": "Beautiful landscape view",
+            "link": "/collections/all"
+          }
+        },
+        {
+          "type": "image",
+          "settings": {
+            "caption": "Product showcase",
+            "link": "/collections/featured"
+          }
+        },
+        {
+          "type": "image",
+          "settings": {
+            "caption": "Behind the scenes",
+            "link": "/pages/about"
+          }
+        },
+        {
+          "type": "image",
+          "settings": {
+            "caption": "Customer story",
+            "link": "/pages/testimonials"
+          }
+        },
+        {
+          "type": "image",
+          "settings": {
+            "caption": "Team photo",
+            "link": "/pages/team"
+          }
+        },
+        {
+          "type": "image",
+          "settings": {
+            "caption": "Office space",
+            "link": "/pages/contact"
+          }
+        }
+      ]
+    },
+    "spacer": {
+      "type": "custom-section",
+      "blocks": [
+        {
+          "type": "spacer",
+          "settings": {
+            "height": 80,
+            "show_divider": true,
+            "divider_style": "1px solid",
+            "divider_color": "#e0e0e0",
+            "divider_width": 60
+          }
+        }
+      ]
+    },
+    "gallery_grid": {
+      "type": "gallery",
+      "settings": {
+        "heading": "Grid Gallery",
+        "subheading": "Clean and organized presentation",
+        "layout": "three-column",
+        "show_overlay": false,
+        "show_captions_below": true,
+        "background_color": "#f8f9fa",
+        "heading_color": "#333333",
+        "accent_color": "#007ace"
+      },
+      "blocks": [
+        {
+          "type": "image",
+          "settings": {
+            "caption": "Product detail"
+          }
+        },
+        {
+          "type": "image",
+          "settings": {
+            "caption": "Quality craftsmanship"
+          }
+        },
+        {
+          "type": "image",
+          "settings": {
+            "caption": "Innovation at work"
+          }
+        },
+        {
+          "type": "image",
+          "settings": {
+            "caption": "Customer satisfaction"
+          }
+        },
+        {
+          "type": "image",
+          "settings": {
+            "caption": "Attention to detail"
+          }
+        },
+        {
+          "type": "image",
+          "settings": {
+            "caption": "Premium materials"
+          }
+        }
+      ]
+    }
+  },
+  "order": [
+    "page_header",
+    "main",
+    "gallery_masonry",
+    "spacer",
+    "gallery_grid"
+  ]
+}

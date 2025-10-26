@@ -1,0 +1,146 @@
+{% comment %}
+  Renders breadcrumb navigation
+
+  Accepts:
+  - show_home: {Boolean} Show home link (optional, default: true)
+  - separator: {String} Breadcrumb separator (optional, default: '/')
+  - class: {String} Additional CSS classes (optional)
+
+  Usage:
+  {% render 'breadcrumbs', show_home: true, separator: '>' %}
+{% endcomment %}
+
+{% assign show_home_link = show_home | default: true %}
+{% assign breadcrumb_separator = separator | default: '/' %}
+{% assign breadcrumb_class = class | default: '' %}
+
+{% unless template == 'index' %}
+  <nav class="breadcrumbs {{ breadcrumb_class }}" aria-label="Breadcrumb">
+    <ol class="breadcrumbs__list">
+      {% if show_home_link %}
+        <li class="breadcrumbs__item">
+          <a href="{{ routes.root_url }}" class="breadcrumbs__link">Home</a>
+          <span class="breadcrumbs__separator">{{ breadcrumb_separator }}</span>
+        </li>
+      {% endif %}
+
+      {% case template %}
+        {% when 'product' %}
+          {% if collection %}
+            <li class="breadcrumbs__item">
+              <a href="{{ collection.url }}" class="breadcrumbs__link">{{ collection.title }}</a>
+              <span class="breadcrumbs__separator">{{ breadcrumb_separator }}</span>
+            </li>
+          {% endif %}
+          <li class="breadcrumbs__item breadcrumbs__item--current">
+            <span class="breadcrumbs__current">{{ product.title }}</span>
+          </li>
+
+        {% when 'collection' %}
+          <li class="breadcrumbs__item breadcrumbs__item--current">
+            <span class="breadcrumbs__current">{{ collection.title }}</span>
+          </li>
+
+        {% when 'blog' %}
+          <li class="breadcrumbs__item breadcrumbs__item--current">
+            <span class="breadcrumbs__current">{{ blog.title }}</span>
+          </li>
+
+        {% when 'article' %}
+          <li class="breadcrumbs__item">
+            <a href="{{ blog.url }}" class="breadcrumbs__link">{{ blog.title }}</a>
+            <span class="breadcrumbs__separator">{{ breadcrumb_separator }}</span>
+          </li>
+          <li class="breadcrumbs__item breadcrumbs__item--current">
+            <span class="breadcrumbs__current">{{ article.title }}</span>
+          </li>
+
+        {% when 'page' %}
+          <li class="breadcrumbs__item breadcrumbs__item--current">
+            <span class="breadcrumbs__current">{{ page.title }}</span>
+          </li>
+
+        {% when 'cart' %}
+          <li class="breadcrumbs__item breadcrumbs__item--current">
+            <span class="breadcrumbs__current">Cart</span>
+          </li>
+
+        {% when 'search' %}
+          <li class="breadcrumbs__item breadcrumbs__item--current">
+            <span class="breadcrumbs__current">Search Results</span>
+          </li>
+
+        {% when '404' %}
+          <li class="breadcrumbs__item breadcrumbs__item--current">
+            <span class="breadcrumbs__current">Page Not Found</span>
+          </li>
+
+        {% when 'list-collections' %}
+          <li class="breadcrumbs__item breadcrumbs__item--current">
+            <span class="breadcrumbs__current">Collections</span>
+          </li>
+
+        {% else %}
+          <li class="breadcrumbs__item breadcrumbs__item--current">
+            <span class="breadcrumbs__current">{{ page_title }}</span>
+          </li>
+      {% endcase %}
+    </ol>
+  </nav>
+{% endunless %}
+
+<style>
+  .breadcrumbs {
+    margin-bottom: 2rem;
+    font-size: 0.875rem;
+  }
+  
+  .breadcrumbs__list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .breadcrumbs__item {
+    display: flex;
+    align-items: center;
+  }
+  
+  .breadcrumbs__link {
+    color: #666;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .breadcrumbs__link:hover {
+    color: var(--primary-color, #007ace);
+    text-decoration: underline;
+  }
+  
+  .breadcrumbs__separator {
+    margin: 0 0.5rem;
+    color: #999;
+  }
+  
+  .breadcrumbs__current {
+    color: #333;
+    font-weight: 500;
+  }
+  
+  .breadcrumbs__item--current .breadcrumbs__separator {
+    display: none;
+  }
+  
+  @media (max-width: 768px) {
+    .breadcrumbs {
+      font-size: 0.8rem;
+    }
+    
+    .breadcrumbs__separator {
+      margin: 0 0.25rem;
+    }
+  }
+</style>

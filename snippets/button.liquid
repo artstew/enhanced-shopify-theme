@@ -1,0 +1,137 @@
+{% comment %}
+  Renders a customizable button
+
+  Accepts:
+  - text: {String} Button text (required)
+  - url: {String} Button URL (required)
+  - style: {String} Button style - 'primary', 'secondary', 'outline', 'text' (optional, default: 'primary')
+  - size: {String} Button size - 'small', 'medium', 'large' (optional, default: 'medium')
+  - full_width: {Boolean} Make button full width (optional, default: false)
+  - class: {String} Additional CSS classes (optional)
+  - target: {String} Link target (optional)
+  - icon: {String} Icon to display (optional)
+  - icon_position: {String} Icon position - 'left', 'right' (optional, default: 'left')
+
+  Usage:
+  {% render 'button', 
+     text: 'Add to Cart', 
+     url: product.url,
+     style: 'primary',
+     size: 'large',
+     icon: '🛒' %}
+{% endcomment %}
+
+{% assign button_style = style | default: 'primary' %}
+{% assign button_size = size | default: 'medium' %}
+{% assign button_class = class | default: '' %}
+{% assign icon_pos = icon_position | default: 'left' %}
+
+{% if text and url %}
+  <a 
+    href="{{ url }}" 
+    class="btn btn--{{ button_style }} btn--{{ button_size }} {% if full_width %}btn--full-width{% endif %} {{ button_class }}"
+    {% if target %}target="{{ target }}"{% endif %}
+  >
+    {% if icon and icon_pos == 'left' %}
+      <span class="btn__icon btn__icon--left">{{ icon }}</span>
+    {% endif %}
+    
+    <span class="btn__text">{{ text }}</span>
+    
+    {% if icon and icon_pos == 'right' %}
+      <span class="btn__icon btn__icon--right">{{ icon }}</span>
+    {% endif %}
+  </a>
+{% endif %}
+
+<style>
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    border: none;
+    border-radius: 4px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    font-family: inherit;
+    line-height: 1;
+  }
+  
+  /* Sizes */
+  .btn--small {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+  }
+  
+  .btn--medium {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+  }
+  
+  .btn--large {
+    padding: 1rem 2rem;
+    font-size: 1.125rem;
+  }
+  
+  /* Styles */
+  .btn--primary {
+    background-color: var(--primary-color, #007ace);
+    color: white;
+  }
+  
+  .btn--primary:hover {
+    background-color: var(--primary-color-dark, #0056b3);
+  }
+  
+  .btn--secondary {
+    background-color: var(--secondary-color, #6c757d);
+    color: white;
+  }
+  
+  .btn--secondary:hover {
+    background-color: var(--secondary-color-dark, #545b62);
+  }
+  
+  .btn--outline {
+    background-color: transparent;
+    border: 2px solid var(--primary-color, #007ace);
+    color: var(--primary-color, #007ace);
+  }
+  
+  .btn--outline:hover {
+    background-color: var(--primary-color, #007ace);
+    color: white;
+  }
+  
+  .btn--text {
+    background-color: transparent;
+    color: var(--primary-color, #007ace);
+    padding-left: 0;
+    padding-right: 0;
+  }
+  
+  .btn--text:hover {
+    text-decoration: underline;
+  }
+  
+  .btn--full-width {
+    width: 100%;
+  }
+  
+  .btn__icon {
+    display: flex;
+    align-items: center;
+  }
+  
+  .btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+  
+  .btn:disabled:hover {
+    transform: none;
+  }
+</style>

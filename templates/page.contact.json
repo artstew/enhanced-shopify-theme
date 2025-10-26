@@ -1,0 +1,146 @@
+{
+  "sections": {
+    "page_header": {
+      "type": "hero",
+      "settings": {
+        "heading": "Get in Touch",
+        "subheading": "We'd love to hear from you. Send us a message and we'll respond as soon as possible.",
+        "height": "medium",
+        "background_color": "#007ace",
+        "text_color": "#ffffff",
+        "text_alignment": "center"
+      }
+    },
+    "contact_form": {
+      "type": "contact",
+      "settings": {
+        "heading": "Contact Us",
+        "subheading": "Fill out the form below or use the contact information on the right",
+        "address": "123 Business Street\nSuite 100\nCity, State 12345\nUnited States",
+        "phone": "(555) 123-4567",
+        "email": "hello@seatox.com",
+        "hours": "Monday - Friday: 9:00 AM - 6:00 PM\nSaturday: 10:00 AM - 4:00 PM\nSunday: Closed",
+        "background_color": "#f8f9fa",
+        "heading_color": "#333333",
+        "accent_color": "#007ace"
+      }
+    },
+    "additional_info": {
+      "type": "custom-section",
+      "settings": {
+        "padding_top": 60,
+        "padding_bottom": 60
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "settings": {
+            "text": "<h3>Other Ways to Reach Us</h3><p>Choose the method that works best for you. We're committed to providing excellent customer service through all channels.</p>",
+            "text_style": "text--normal",
+            "alignment": "center"
+          }
+        },
+        {
+          "type": "spacer",
+          "settings": {
+            "height": 40,
+            "show_divider": false
+          }
+        }
+      ]
+    },
+    "contact_methods": {
+      "type": "custom-section",
+      "settings": {
+        "padding_top": 0,
+        "padding_bottom": 60
+      },
+      "blocks": [
+        {
+          "type": "feature",
+          "settings": {
+            "heading": "Live Chat",
+            "description": "<p>Get instant help from our support team through our live chat feature available on every page.</p>",
+            "icon_text": "💬",
+            "icon_color": "#007ace",
+            "layout": "vertical",
+            "text_alignment": "center"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "heading": "Email Support",
+            "description": "<p>Send us detailed questions or concerns via email and we'll respond within 24 hours.</p>",
+            "icon_text": "📧", 
+            "icon_color": "#007ace",
+            "layout": "vertical",
+            "text_alignment": "center"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "heading": "Phone Support",
+            "description": "<p>Speak directly with our customer service representatives during business hours.</p>",
+            "icon_text": "📞",
+            "icon_color": "#007ace",
+            "layout": "vertical",
+            "text_alignment": "center"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "heading": "Social Media",
+            "description": "<p>Follow us on social media for updates, tips, and quick responses to your questions.</p>",
+            "icon_text": "📱",
+            "icon_color": "#007ace",
+            "layout": "vertical",
+            "text_alignment": "center"
+          }
+        }
+      ]
+    },
+    "faq_section": {
+      "type": "faq",
+      "settings": {
+        "heading": "Common Questions",
+        "subheading": "Before contacting us, check if your question is answered below",
+        "background_color": "#ffffff",
+        "heading_color": "#333333",
+        "accent_color": "#007ace"
+      },
+      "blocks": [
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "How quickly do you respond to inquiries?",
+            "answer": "<p>We aim to respond to all inquiries within 4 hours during business hours. For urgent matters, please call our phone number directly.</p>"
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "Can I schedule a consultation?",
+            "answer": "<p>Yes! We offer free consultations to discuss your needs in detail. Use the contact form above to request a consultation or call us directly.</p>"
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "Do you offer technical support?",
+            "answer": "<p>Absolutely. Our technical support team can help with product setup, troubleshooting, and any technical questions you may have.</p>"
+          }
+        }
+      ]
+    }
+  },
+  "order": [
+    "page_header",
+    "contact_form",
+    "additional_info",
+    "contact_methods",
+    "faq_section"
+  ]
+}
