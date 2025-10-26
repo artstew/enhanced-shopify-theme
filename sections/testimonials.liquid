@@ -2,7 +2,7 @@
   Testimonials section with customizable layout and styling
 {% endcomment %}
 
-<section class="testimonials testimonials--{{ section.settings.layout }}" {{ section.shopify_attributes }}>
+<section class="testimonials testimonials--{{ section.settings.layout }} section-{{ section.id }}" {{ section.shopify_attributes }}>
   <div class="testimonials__container">
     {% if section.settings.heading != blank %}
       <div class="testimonials__header">
@@ -48,6 +48,10 @@
     </div>
   </div>
 </section>
+
+<style>
+  {% render 'layout-css', section: section %}
+</style>
 
 {% stylesheet %}
   .testimonials {
@@ -201,7 +205,8 @@
       "id": "heading_color",
       "label": "Heading Color",
       "default": "#333333"
-    }
+    },
+    {% render 'layout-settings' %}
   ],
   "blocks": [
     {

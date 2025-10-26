@@ -1,0 +1,98 @@
+{%- comment -%}
+  Layout CSS Generator Snippet
+  Include this in section styles to apply layout settings
+  Usage: {% render 'layout-css', section: section %}
+{%- endcomment -%}
+
+<style>
+  .section-{{ section.id }} {
+    /* Width Control */
+    {%- case section.settings.section_width -%}
+      {%- when 'full-width' -%}
+        width: 100%;
+        max-width: none;
+      {%- when 'narrow' -%}
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+      {%- when 'wide' -%}
+        max-width: 1400px;
+        margin-left: auto;
+        margin-right: auto;
+      {%- else -%}
+        max-width: 1200px;
+        margin-left: auto;
+        margin-right: auto;
+    {%- endcase -%}
+
+    /* Padding */
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    padding-left: {{ section.settings.padding_left }}px;
+    padding-right: {{ section.settings.padding_right }}px;
+
+    /* Margin */
+    margin-top: {{ section.settings.margin_top }}px;
+    margin-bottom: {{ section.settings.margin_bottom }}px;
+
+    /* Background */
+    {%- if section.settings.background_color != blank -%}
+      background: {{ section.settings.background_color }};
+    {%- endif -%}
+
+    /* Border */
+    {%- if section.settings.border_style != 'none' -%}
+      border: {{ section.settings.border_width }}px {{ section.settings.border_style }} {{ section.settings.border_color }};
+    {%- endif -%}
+    border-radius: {{ section.settings.border_radius }}px;
+
+    /* Shadow */
+    {%- if section.settings.enable_shadow -%}
+      box-shadow: 0 0 {{ section.settings.shadow_blur }}px {{ section.settings.shadow_color }};
+    {%- endif -%}
+
+    /* Content Alignment */
+    {%- case section.settings.content_alignment -%}
+      {%- when 'center' -%}
+        display: flex;
+        justify-content: center;
+      {%- when 'right' -%}
+        display: flex;
+        justify-content: flex-end;
+    {%- endcase -%}
+
+    /* Text Alignment */
+    text-align: {{ section.settings.text_alignment }};
+  }
+
+  .section-{{ section.id }} .section-content {
+    /* Flexbox Controls */
+    display: flex;
+    flex-direction: {{ section.settings.flex_direction }};
+    justify-content: {{ section.settings.justify_content }};
+    align-items: {{ section.settings.align_items }};
+    gap: {{ section.settings.content_gap }}px;
+    width: 100%;
+  }
+
+  /* Responsive adjustments */
+  @media screen and (max-width: 749px) {
+    .section-{{ section.id }} {
+      padding-left: max({{ section.settings.padding_left }}px, 1rem);
+      padding-right: max({{ section.settings.padding_right }}px, 1rem);
+    }
+
+    .section-{{ section.id }} .section-content {
+      {%- if section.settings.flex_direction == 'row' -%}
+        flex-direction: column;
+      {%- endif -%}
+      gap: {{ section.settings.content_gap | divided_by: 2 }}px;
+    }
+  }
+
+  @media screen and (min-width: 750px) and (max-width: 989px) {
+    .section-{{ section.id }} .section-content {
+      gap: {{ section.settings.content_gap | times: 0.75 }}px;
+    }
+  }
+</style>

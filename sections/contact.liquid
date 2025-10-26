@@ -2,7 +2,7 @@
   Contact section with form and contact information
 {% endcomment %}
 
-<section class="contact" {{ section.shopify_attributes }}>
+<section class="contact section-{{ section.id }}" {{ section.shopify_attributes }}>
   <div class="contact__container">
     {% if section.settings.heading != blank %}
       <div class="contact__header">
@@ -117,6 +117,10 @@
     </div>
   </div>
 </section>
+
+<style>
+  {% render 'layout-css', section: section %}
+</style>
 
 {% stylesheet %}
   .contact {
@@ -326,7 +330,8 @@
       "id": "accent_color",
       "label": "Accent Color",
       "default": "#007ace"
-    }
+    },
+    {% render 'layout-settings' %}
   ],
   "presets": [
     {

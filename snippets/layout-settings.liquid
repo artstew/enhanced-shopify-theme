@@ -1,0 +1,312 @@
+{%- comment -%}
+  Common Layout Settings Snippet
+  Include this in section schemas to add comprehensive layout controls
+{%- endcomment -%}
+
+{
+  "type": "header",
+  "content": "Layout & Spacing"
+},
+{
+  "type": "select",
+  "id": "section_width",
+  "options": [
+    {
+      "value": "full-width",
+      "label": "Full width"
+    },
+    {
+      "value": "page-width",
+      "label": "Page width"
+    },
+    {
+      "value": "narrow",
+      "label": "Narrow"
+    },
+    {
+      "value": "wide",
+      "label": "Wide"
+    }
+  ],
+  "default": "page-width",
+  "label": "Section width"
+},
+{
+  "type": "select",
+  "id": "content_alignment",
+  "options": [
+    {
+      "value": "left",
+      "label": "Left"
+    },
+    {
+      "value": "center",
+      "label": "Center"
+    },
+    {
+      "value": "right",
+      "label": "Right"
+    }
+  ],
+  "default": "left",
+  "label": "Content alignment"
+},
+{
+  "type": "select",
+  "id": "text_alignment",
+  "options": [
+    {
+      "value": "left",
+      "label": "Left"
+    },
+    {
+      "value": "center",
+      "label": "Center"
+    },
+    {
+      "value": "right",
+      "label": "Right"
+    }
+  ],
+  "default": "left",
+  "label": "Text alignment"
+},
+{
+  "type": "range",
+  "id": "padding_top",
+  "min": 0,
+  "max": 200,
+  "step": 4,
+  "unit": "px",
+  "label": "Top padding",
+  "default": 40
+},
+{
+  "type": "range",
+  "id": "padding_bottom", 
+  "min": 0,
+  "max": 200,
+  "step": 4,
+  "unit": "px",
+  "label": "Bottom padding",
+  "default": 40
+},
+{
+  "type": "range",
+  "id": "padding_left",
+  "min": 0,
+  "max": 100,
+  "step": 4,
+  "unit": "px", 
+  "label": "Left padding",
+  "default": 0
+},
+{
+  "type": "range",
+  "id": "padding_right",
+  "min": 0,
+  "max": 100,
+  "step": 4,
+  "unit": "px",
+  "label": "Right padding", 
+  "default": 0
+},
+{
+  "type": "range",
+  "id": "margin_top",
+  "min": 0,
+  "max": 100,
+  "step": 4,
+  "unit": "px",
+  "label": "Top margin",
+  "default": 0
+},
+{
+  "type": "range",
+  "id": "margin_bottom",
+  "min": 0,
+  "max": 100,
+  "step": 4,
+  "unit": "px", 
+  "label": "Bottom margin",
+  "default": 0
+},
+{
+  "type": "header",
+  "content": "Flexbox Controls"
+},
+{
+  "type": "select",
+  "id": "flex_direction",
+  "options": [
+    {
+      "value": "row",
+      "label": "Horizontal (Row)"
+    },
+    {
+      "value": "column", 
+      "label": "Vertical (Column)"
+    },
+    {
+      "value": "row-reverse",
+      "label": "Horizontal Reverse"
+    },
+    {
+      "value": "column-reverse",
+      "label": "Vertical Reverse"
+    }
+  ],
+  "default": "column",
+  "label": "Content direction"
+},
+{
+  "type": "select",
+  "id": "justify_content",
+  "options": [
+    {
+      "value": "flex-start",
+      "label": "Start"
+    },
+    {
+      "value": "center",
+      "label": "Center"
+    },
+    {
+      "value": "flex-end", 
+      "label": "End"
+    },
+    {
+      "value": "space-between",
+      "label": "Space Between"
+    },
+    {
+      "value": "space-around",
+      "label": "Space Around"
+    },
+    {
+      "value": "space-evenly",
+      "label": "Space Evenly"
+    }
+  ],
+  "default": "flex-start",
+  "label": "Justify content"
+},
+{
+  "type": "select", 
+  "id": "align_items",
+  "options": [
+    {
+      "value": "flex-start",
+      "label": "Start"
+    },
+    {
+      "value": "center",
+      "label": "Center"
+    },
+    {
+      "value": "flex-end",
+      "label": "End"
+    },
+    {
+      "value": "stretch",
+      "label": "Stretch"
+    },
+    {
+      "value": "baseline",
+      "label": "Baseline"
+    }
+  ],
+  "default": "stretch",
+  "label": "Align items"
+},
+{
+  "type": "range",
+  "id": "content_gap",
+  "min": 0,
+  "max": 100,
+  "step": 4,
+  "unit": "px",
+  "label": "Content gap",
+  "default": 20
+},
+{
+  "type": "header",
+  "content": "Visual Style"
+},
+{
+  "type": "color_background",
+  "id": "background_color",
+  "label": "Background color"
+},
+{
+  "type": "range",
+  "id": "border_radius",
+  "min": 0,
+  "max": 50,
+  "step": 2,
+  "unit": "px",
+  "label": "Border radius",
+  "default": 0
+},
+{
+  "type": "select",
+  "id": "border_style",
+  "options": [
+    {
+      "value": "none",
+      "label": "None"
+    },
+    {
+      "value": "solid",
+      "label": "Solid"
+    },
+    {
+      "value": "dashed",
+      "label": "Dashed"
+    },
+    {
+      "value": "dotted",
+      "label": "Dotted"
+    }
+  ],
+  "default": "none",
+  "label": "Border style"
+},
+{
+  "type": "range",
+  "id": "border_width",
+  "min": 0,
+  "max": 10,
+  "step": 1,
+  "unit": "px",
+  "label": "Border width",
+  "default": 0
+},
+{
+  "type": "color",
+  "id": "border_color",
+  "label": "Border color",
+  "default": "#000000"
+},
+{
+  "type": "checkbox",
+  "id": "enable_shadow",
+  "label": "Enable shadow",
+  "default": false
+},
+{
+  "type": "range",
+  "id": "shadow_blur",
+  "min": 0,
+  "max": 50,
+  "step": 2,
+  "unit": "px",
+  "label": "Shadow blur",
+  "default": 10
+},
+{
+  "type": "color",
+  "id": "shadow_color",
+  "label": "Shadow color", 
+  "default": "rgba(0,0,0,0.1)"
+}

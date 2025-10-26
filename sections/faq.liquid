@@ -2,7 +2,7 @@
   FAQ section with accordion-style expandable questions
 {% endcomment %}
 
-<section class="faq" {{ section.shopify_attributes }}>
+<section class="faq section-{{ section.id }}" {{ section.shopify_attributes }}>
   <div class="faq__container">
     {% if section.settings.heading != blank %}
       <div class="faq__header">
@@ -30,6 +30,10 @@
     </div>
   </div>
 </section>
+
+<style>
+  {% render 'layout-css', section: section %}
+</style>
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
@@ -199,7 +203,8 @@ document.addEventListener('DOMContentLoaded', function() {
       "id": "accent_color",
       "label": "Accent Color",
       "default": "#007ace"
-    }
+    },
+    {% render 'layout-settings' %}
   ],
   "blocks": [
     {

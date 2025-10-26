@@ -3,13 +3,19 @@
 {% endcomment %}
 
 <section 
-  class="hero hero--{{ section.settings.height }}" 
+  class="hero hero--{{ section.settings.height }} section-{{ section.id }}" 
   style="
     background-color: {{ section.settings.background_color }};
     {% if section.settings.background_image %}
       background-image: url('{{ section.settings.background_image | image_url: width: 1920 }}');
       background-size: cover;
       background-position: {{ section.settings.background_position }};
+    {% endif %}
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    border-radius: {{ section.settings.border_radius }}px;
+    {% if section.settings.enable_shadow %}
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
     {% endif %}
   "
   {{ section.shopify_attributes }}
@@ -18,8 +24,8 @@
     <div class="hero__overlay" style="background-color: {{ section.settings.overlay_color }}; opacity: {{ section.settings.overlay_opacity | divided_by: 100.0 }};"></div>
   {% endif %}
   
-  <div class="hero__content">
-    <div class="hero__text" style="text-align: {{ section.settings.text_alignment }}; color: {{ section.settings.text_color }};">
+  <div class="hero__content hero__content--{{ section.settings.content_alignment }}">
+    <div class="hero__text" style="text-align: {{ section.settings.text_alignment }}; color: {{ section.settings.text_color }}; gap: {{ section.settings.content_gap }}px;">
       {% if section.settings.heading != blank %}
         <h1 class="hero__heading">{{ section.settings.heading }}</h1>
       {% endif %}
@@ -46,6 +52,28 @@
     width: 100%;
     background-repeat: no-repeat;
   }
+
+  /* Section Width Controls */
+  .section-{{ section.id }} {
+    {%- case section.settings.section_width -%}
+      {%- when 'full-width' -%}
+        width: 100%;
+        max-width: none;
+        margin: 0;
+      {%- when 'narrow' -%}
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+      {%- when 'wide' -%}
+        max-width: 1400px;
+        margin-left: auto;
+        margin-right: auto;
+      {%- else -%}
+        max-width: 1200px;
+        margin-left: auto;
+        margin-right: auto;
+    {%- endcase -%}
+  }
   
   .hero--small { min-height: 300px; }
   .hero--medium { min-height: 500px; }
@@ -67,6 +95,27 @@
     padding: 2rem;
     max-width: 800px;
     width: 100%;
+  }
+
+  .hero__content--left {
+    justify-self: flex-start;
+    text-align: left;
+  }
+
+  .hero__content--center {
+    justify-self: center;
+    text-align: center;
+  }
+
+  .hero__content--right {
+    justify-self: flex-end;
+    text-align: right;
+  }
+
+  .hero__text {
+    display: flex;
+    flex-direction: column;
+    align-items: inherit;
   }
   
   .hero__heading {
@@ -212,6 +261,104 @@
       "unit": "%",
       "label": "Overlay Opacity",
       "default": 50
+    },
+    {
+      "type": "header",
+      "content": "Layout & Spacing"
+    },
+    {
+      "type": "select",
+      "id": "section_width",
+      "options": [
+        {
+          "value": "full-width",
+          "label": "Full width"
+        },
+        {
+          "value": "page-width",
+          "label": "Page width"
+        },
+        {
+          "value": "narrow",
+          "label": "Narrow"
+        },
+        {
+          "value": "wide",
+          "label": "Wide"
+        }
+      ],
+      "default": "full-width",
+      "label": "Section width"
+    },
+    {
+      "type": "select",
+      "id": "content_alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center",
+      "label": "Content alignment"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom", 
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "content_gap",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Content gap",
+      "default": 24
+    },
+    {
+      "type": "header",
+      "content": "Visual Style"
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "min": 0,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "label": "Border radius",
+      "default": 0
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_shadow",
+      "label": "Enable shadow",
+      "default": false
     }
   ],
   "presets": [

@@ -2,7 +2,7 @@
   Image gallery section with various layout options
 {% endcomment %}
 
-<section class="gallery gallery--{{ section.settings.layout }}" {{ section.shopify_attributes }}>
+<section class="gallery gallery--{{ section.settings.layout }} section-{{ section.id }}" {{ section.shopify_attributes }}>
   <div class="gallery__container">
     {% if section.settings.heading != blank %}
       <div class="gallery__header">
@@ -49,6 +49,10 @@
     </div>
   </div>
 </section>
+
+<style>
+  {% render 'layout-css', section: section %}
+</style>
 
 {% stylesheet %}
   .gallery {
@@ -267,7 +271,8 @@
       "id": "accent_color",
       "label": "Accent Color",
       "default": "#007ace"
-    }
+    },
+    {% render 'layout-settings' %}
   ],
   "blocks": [
     {
