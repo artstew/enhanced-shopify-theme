@@ -1,7 +1,17 @@
 <header>
-  <h2 class="header__title">
-    {{ shop.name | link_to: routes.root_url }}
-  </h2>
+  <div class="header__logo">
+    <a href="{{ routes.root_url }}">
+      {% if section.settings.logo != blank %}
+        <img src="{{ section.settings.logo | image_url: width: section.settings.logo_width }}" 
+             alt="{{ shop.name }}" 
+             class="header__logo-image"
+             width="{{ section.settings.logo_width }}"
+             height="auto">
+      {% else %}
+        <span class="header__logo-text">{{ shop.name }}</span>
+      {% endif %}
+    </a>
+  </div>
 
   <div class="header__menu">
     {% for link in section.settings.menu.links %}
@@ -36,6 +46,18 @@
     text-decoration: none;
     color: var(--color-foreground);
   }
+  .header__logo a {
+    display: inline-block;
+  }
+  .header__logo-image {
+    max-height: 4rem;
+    width: auto;
+    display: block;
+  }
+  .header__logo-text {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
   header a sup {
     position: absolute;
     left: 100%;
@@ -56,6 +78,30 @@
 {
   "name": "t:general.header",
   "settings": [
+    {
+      "type": "header",
+      "content": "Logo Settings"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo Image",
+      "info": "Upload your logo image. If no image is selected, the site name will be displayed as text."
+    },
+    {
+      "type": "range",
+      "id": "logo_width",
+      "min": 50,
+      "max": 300,
+      "step": 10,
+      "unit": "px",
+      "label": "Logo Width",
+      "default": 150
+    },
+    {
+      "type": "header",
+      "content": "Navigation Settings"
+    },
     {
       "type": "link_list",
       "id": "menu",
