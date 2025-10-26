@@ -5,6 +5,7 @@
   list-style: none;
   padding: 0;
   margin: 0;
+  width: 100%;
 }
 
 .grid__item {
@@ -93,6 +94,7 @@
   flex: 1;
   display: flex;
   flex-direction: column;
+  min-height: 0; /* Allows flex items to shrink */
 }
 
 .card__information {
@@ -399,6 +401,98 @@
   padding: 2rem 0;
 }
 
+/* Flexbox Utilities */
+.flex-row {
+  flex-direction: row !important;
+}
+
+.flex-column {
+  flex-direction: column !important;
+}
+
+.flex-row-reverse {
+  flex-direction: row-reverse !important;
+}
+
+.flex-column-reverse {
+  flex-direction: column-reverse !important;
+}
+
+.justify-start {
+  justify-content: flex-start !important;
+}
+
+.justify-center {
+  justify-content: center !important;
+}
+
+.justify-end {
+  justify-content: flex-end !important;
+}
+
+.justify-between {
+  justify-content: space-between !important;
+}
+
+.justify-around {
+  justify-content: space-around !important;
+}
+
+.justify-evenly {
+  justify-content: space-evenly !important;
+}
+
+.items-start {
+  align-items: flex-start !important;
+}
+
+.items-center {
+  align-items: center !important;
+}
+
+.items-end {
+  align-items: flex-end !important;
+}
+
+.items-stretch {
+  align-items: stretch !important;
+}
+
+.items-baseline {
+  align-items: baseline !important;
+}
+
+.text-left {
+  text-align: left !important;
+}
+
+.text-center {
+  text-align: center !important;
+}
+
+.text-right {
+  text-align: right !important;
+}
+
+/* Enhanced Card Layouts for Different Flex Directions */
+.card--horizontal {
+  flex-direction: row;
+}
+
+.card--horizontal .card__media {
+  flex: 0 0 40%;
+  max-width: 40%;
+}
+
+.card--horizontal .card__content {
+  flex: 1;
+  padding-left: 1rem;
+}
+
+.card--vertical-reverse .card__content {
+  order: -1;
+}
+
 /* Responsive Breakpoints */
 @media screen and (min-width: 750px) {
   .page-width {
@@ -411,6 +505,11 @@
   
   .card__content {
     padding: 1.5rem;
+  }
+  
+  .card--horizontal .card__content {
+    padding: 1.5rem;
+    padding-left: 2rem;
   }
   
   .title {

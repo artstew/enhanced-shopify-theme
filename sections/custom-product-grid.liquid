@@ -93,24 +93,47 @@
 
   .product-grid .grid {
     gap: {{ section.settings.grid_gap }}px;
+    justify-content: {{ section.settings.justify_content }};
+    align-items: {{ section.settings.align_items }};
   }
 
   .product-grid .card {
     height: 100%;
+    text-align: {{ section.settings.card_text_align }};
   }
 
   .product-grid .card__content {
     display: flex;
-    flex-direction: column;
+    flex-direction: {{ section.settings.flex_direction }};
     height: 100%;
   }
 
   .product-grid .card__information {
     flex-grow: 1;
     display: flex;
-    flex-direction: column;
+    flex-direction: {{ section.settings.flex_direction }};
     justify-content: space-between;
   }
+
+  /* Adjust spacing based on flex direction */
+  {%- if section.settings.flex_direction == 'row' or section.settings.flex_direction == 'row-reverse' -%}
+    .product-grid .card__content {
+      align-items: center;
+    }
+    .product-grid .card__information {
+      align-items: center;
+      gap: 1rem;
+    }
+  {%- endif -%}
+
+  /* Text alignment overrides for specific directions */
+  {%- if section.settings.flex_direction == 'column' or section.settings.flex_direction == 'column-reverse' -%}
+    .product-grid .card__heading,
+    .product-grid .card-information,
+    .product-grid .price {
+      text-align: {{ section.settings.card_text_align }};
+    }
+  {%- endif -%}
 </style>
 
 {% schema %}
@@ -187,6 +210,117 @@
       "unit": "px",
       "label": "Grid gap",
       "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Layout control"
+    },
+    {
+      "type": "select",
+      "id": "flex_direction",
+      "options": [
+        {
+          "value": "row",
+          "label": "Horizontal (Row)"
+        },
+        {
+          "value": "column",
+          "label": "Vertical (Column)"
+        },
+        {
+          "value": "row-reverse",
+          "label": "Horizontal Reverse"
+        },
+        {
+          "value": "column-reverse",
+          "label": "Vertical Reverse"
+        }
+      ],
+      "default": "row",
+      "label": "Card content direction",
+      "info": "Controls how content flows within each product card"
+    },
+    {
+      "type": "select",
+      "id": "justify_content",
+      "options": [
+        {
+          "value": "flex-start",
+          "label": "Start"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "flex-end",
+          "label": "End"
+        },
+        {
+          "value": "space-between",
+          "label": "Space Between"
+        },
+        {
+          "value": "space-around",
+          "label": "Space Around"
+        },
+        {
+          "value": "space-evenly",
+          "label": "Space Evenly"
+        }
+      ],
+      "default": "flex-start",
+      "label": "Grid alignment",
+      "info": "Controls how products are aligned within the grid container"
+    },
+    {
+      "type": "select",
+      "id": "align_items",
+      "options": [
+        {
+          "value": "stretch",
+          "label": "Stretch (Equal Height)"
+        },
+        {
+          "value": "flex-start",
+          "label": "Top"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "flex-end",
+          "label": "Bottom"
+        },
+        {
+          "value": "baseline",
+          "label": "Baseline"
+        }
+      ],
+      "default": "stretch",
+      "label": "Vertical alignment",
+      "info": "Controls vertical alignment of products in the grid"
+    },
+    {
+      "type": "select",
+      "id": "card_text_align",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left",
+      "label": "Card text alignment"
     },
     {
       "type": "header",
