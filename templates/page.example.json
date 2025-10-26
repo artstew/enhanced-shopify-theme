@@ -1,27 +1,16 @@
 {
   "sections": {
     "breadcrumbs": {
-      "type": "custom-section",
+      "type": "breadcrumbs",
       "settings": {
-        "padding_top": 20,
-        "padding_bottom": 10
-      },
-      "blocks": [
-        {
-          "type": "text",
-          "settings": {
-            "text": "{% render 'breadcrumbs' %}",
-            "text_style": "text--normal",
-            "alignment": "left"
-          }
-        }
-      ]
+        "background_color": "transparent"
+      }
     },
     "page_header": {
       "type": "hero",
       "settings": {
-        "heading": "{{ page.title }}",
-        "subheading": "{{ page.content | strip_html | truncate: 200 }}",
+        "heading": "Page Title",
+        "subheading": "Page description will appear here",
         "height": "medium",
         "background_color": "#f8f9fa",
         "text_color": "#333333",

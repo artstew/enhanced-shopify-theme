@@ -3,7 +3,7 @@
     "page_header": {
       "type": "hero",
       "settings": {
-        "heading": "{{ page.title }}",
+        "heading": "Gallery",
         "subheading": "Explore our visual showcase",
         "height": "medium",
         "background_color": "#f8f9fa",
