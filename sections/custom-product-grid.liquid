@@ -10,7 +10,7 @@
   assign image_ratio = section.settings.image_ratio
 -%}
 
-<div class="product-grid-section section-{{ section.id }}-padding section-{{ section.id }}">
+<div class="product-grid-section section-{{ section.id }}-padding">
   <div class="page-width">
     {%- if section.settings.title != blank -%}
       <div class="title-wrapper-with-link title-wrapper--self-padded-mobile title-wrapper--no-top-margin">
@@ -145,10 +145,6 @@
   #product-grid-{{ section.id }} .quick-add {
     text-align: {{ section.settings.card_text_align }};
   }
-</style>
-
-<style>
-  {% render 'layout-css', section: section %}
 </style>
 
 {% schema %}
@@ -459,8 +455,7 @@
       "unit": "px",
       "label": "Bottom padding",
       "default": 36
-    },
-    {% render 'layout-settings' %}
+    }
   ],
   "blocks": [
     {
