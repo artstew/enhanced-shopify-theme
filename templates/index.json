@@ -47,7 +47,7 @@
         "columns_mobile": "1",
         "grid_gap": 20,
         "flex_direction": "column",
-        "justify_content": "center",
+        "justify_content": "flex-start",
         "align_items": "stretch",
         "card_text_align": "center",
         "image_ratio": "adapt",
