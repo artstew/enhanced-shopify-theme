@@ -27,55 +27,55 @@
         "heading_color": "#333333",
         "accent_color": "#007ace"
       },
-      "blocks": [
-        {
+      "blocks": {
+        "image_1": {
           "type": "image",
           "settings": {
             "caption": "Beautiful landscape view",
             "link": "/collections/all"
           }
         },
-        {
+        "image_2": {
           "type": "image",
           "settings": {
             "caption": "Product showcase",
             "link": "/collections/featured"
           }
         },
-        {
+        "image_3": {
           "type": "image",
           "settings": {
             "caption": "Behind the scenes",
             "link": "/pages/about"
           }
         },
-        {
+        "image_4": {
           "type": "image",
           "settings": {
             "caption": "Customer story",
             "link": "/pages/testimonials"
           }
         },
-        {
+        "image_5": {
           "type": "image",
           "settings": {
             "caption": "Team photo",
             "link": "/pages/team"
           }
         },
-        {
+        "image_6": {
           "type": "image",
           "settings": {
             "caption": "Office space",
             "link": "/pages/contact"
           }
         }
-      ]
+      }
     },
     "spacer": {
       "type": "custom-section",
-      "blocks": [
-        {
+      "blocks": {
+        "spacer_1": {
           "type": "spacer",
           "settings": {
             "height": 80,
@@ -85,7 +85,7 @@
             "divider_width": 60
           }
         }
-      ]
+      }
     },
     "gallery_grid": {
       "type": "gallery",
@@ -99,44 +99,44 @@
         "heading_color": "#333333",
         "accent_color": "#007ace"
       },
-      "blocks": [
-        {
+      "blocks": {
+        "grid_image_1": {
           "type": "image",
           "settings": {
             "caption": "Product detail"
           }
         },
-        {
+        "grid_image_2": {
           "type": "image",
           "settings": {
             "caption": "Quality craftsmanship"
           }
         },
-        {
+        "grid_image_3": {
           "type": "image",
           "settings": {
             "caption": "Innovation at work"
           }
         },
-        {
+        "grid_image_4": {
           "type": "image",
           "settings": {
             "caption": "Customer satisfaction"
           }
         },
-        {
+        "grid_image_5": {
           "type": "image",
           "settings": {
             "caption": "Attention to detail"
           }
         },
-        {
+        "grid_image_6": {
           "type": "image",
           "settings": {
             "caption": "Premium materials"
           }
         }
-      ]
+      }
     }
   },
   "order": [

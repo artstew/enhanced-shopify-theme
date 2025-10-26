@@ -31,8 +31,8 @@
         "padding_top": 60,
         "padding_bottom": 60
       },
-      "blocks": [
-        {
+      "blocks": {
+        "info_text": {
           "type": "text",
           "settings": {
             "text": "<h3>Other Ways to Reach Us</h3><p>Choose the method that works best for you. We're committed to providing excellent customer service through all channels.</p>",
@@ -40,14 +40,14 @@
             "alignment": "center"
           }
         },
-        {
+        "spacer_1": {
           "type": "spacer",
           "settings": {
             "height": 40,
             "show_divider": false
           }
         }
-      ]
+      }
     },
     "contact_methods": {
       "type": "custom-section",
@@ -55,8 +55,8 @@
         "padding_top": 0,
         "padding_bottom": 60
       },
-      "blocks": [
-        {
+      "blocks": {
+        "chat_support": {
           "type": "feature",
           "settings": {
             "heading": "Live Chat",
@@ -67,7 +67,7 @@
             "text_alignment": "center"
           }
         },
-        {
+        "email_support": {
           "type": "feature",
           "settings": {
             "heading": "Email Support",
@@ -78,7 +78,7 @@
             "text_alignment": "center"
           }
         },
-        {
+        "phone_support": {
           "type": "feature",
           "settings": {
             "heading": "Phone Support",
@@ -89,7 +89,7 @@
             "text_alignment": "center"
           }
         },
-        {
+        "social_media": {
           "type": "feature",
           "settings": {
             "heading": "Social Media",
@@ -100,7 +100,7 @@
             "text_alignment": "center"
           }
         }
-      ]
+      }
     },
     "faq_section": {
       "type": "faq",
@@ -111,29 +111,29 @@
         "heading_color": "#333333",
         "accent_color": "#007ace"
       },
-      "blocks": [
-        {
+      "blocks": {
+        "faq_1": {
           "type": "faq_item",
           "settings": {
             "question": "How quickly do you respond to inquiries?",
             "answer": "<p>We aim to respond to all inquiries within 4 hours during business hours. For urgent matters, please call our phone number directly.</p>"
           }
         },
-        {
+        "faq_2": {
           "type": "faq_item",
           "settings": {
             "question": "Can I schedule a consultation?",
             "answer": "<p>Yes! We offer free consultations to discuss your needs in detail. Use the contact form above to request a consultation or call us directly.</p>"
           }
         },
-        {
+        "faq_3": {
           "type": "faq_item",
           "settings": {
             "question": "Do you offer technical support?",
             "answer": "<p>Absolutely. Our technical support team can help with product setup, troubleshooting, and any technical questions you may have.</p>"
           }
         }
-      ]
+      }
     }
   },
   "order": [
