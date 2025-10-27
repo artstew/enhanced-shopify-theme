@@ -131,69 +131,58 @@
     ]
   },
   {
-    "name": "Color scheme 1",
+    "name": "t:sections.all.colors.name",
     "settings": [
       {
+        "type": "color_scheme",
+        "id": "color_scheme",
+        "label": "t:sections.all.colors.label",
+        "default": "background-1"
+      }
+    ]
+  },
+  {
+    "name": "Color schemes",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Default color scheme"
+      },
+      {
         "type": "color",
-        "id": "colors_solid_button_labels",
+        "id": "base_background",
         "default": "#FFFFFF",
-        "label": "Solid button label"
+        "label": "Background"
       },
       {
         "type": "color",
-        "id": "colors_accent_1",
-        "default": "#121212",
-        "label": "Accent 1"
-      },
-      {
-        "type": "color_background",
-        "id": "gradient_accent_1",
-        "label": "Accent 1 gradient"
-      },
-      {
-        "type": "color",
-        "id": "colors_accent_2",
-        "default": "#334FB4",
-        "label": "Accent 2"
-      },
-      {
-        "type": "color_background",
-        "id": "gradient_accent_2",
-        "label": "Accent 2 gradient"
-      },
-      {
-        "type": "color",
-        "id": "colors_text",
+        "id": "base_text",
         "default": "#121212",
         "label": "Text"
       },
       {
         "type": "color",
-        "id": "colors_outline_button_labels",
-        "default": "#121212",
-        "label": "Outline button label"
+        "id": "base_accent",
+        "default": "#007ace",
+        "label": "Button background"
       },
       {
         "type": "color",
-        "id": "colors_background_1",
+        "id": "base_accent_text",
         "default": "#FFFFFF",
-        "label": "Background 1"
-      },
-      {
-        "type": "color_background",
-        "id": "gradient_background_1",
-        "label": "Background 1 gradient"
+        "label": "Button text"
       },
       {
         "type": "color",
-        "id": "colors_background_2",
-        "default": "#F3F3F3",
-        "label": "Background 2"
+        "id": "base_outline_button_labels",
+        "default": "#007ace",
+        "label": "Outline button"
       },
       {
-        "type": "color_background",
-        "id": "gradient_background_2",
-        "label": "Background 2 gradient"
+        "type": "color",
+        "id": "base_shadow",
+        "default": "rgba(0,0,0,0.1)",
+        "label": "Shadow"
       }
     ]
   },
