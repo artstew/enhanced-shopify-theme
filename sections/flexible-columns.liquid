@@ -248,7 +248,7 @@ document.addEventListener('DOMContentLoaded', function() {
   {% render 'layout-css', section: section %}
 </style>
 
-{% stylesheet %}
+<style>
   .flexible-columns {
     padding: 4rem 2rem;
     background-color: {{ section.settings.background_color | default: '#ffffff' }};
@@ -498,7 +498,7 @@ document.addEventListener('DOMContentLoaded', function() {
       font-size: 2rem;
     }
   }
-{% endstylesheet %}
+</style>
 
 {% schema %}
 {

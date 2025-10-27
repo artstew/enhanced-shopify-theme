@@ -122,7 +122,7 @@
   {% render 'layout-css', section: section %}
 </style>
 
-{% stylesheet %}
+<style>
   .contact {
     padding: 4rem 2rem;
     background-color: {{ section.settings.background_color | default: '#f8f9fa' }};
@@ -271,7 +271,7 @@
       grid-template-columns: 1fr;
     }
   }
-{% endstylesheet %}
+</style>
 
 {% schema %}
 {

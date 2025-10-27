@@ -54,7 +54,7 @@
   {% render 'layout-css', section: section %}
 </style>
 
-{% stylesheet %}
+<style>
   .gallery {
     padding: 4rem 2rem;
     background-color: {{ section.settings.background_color | default: '#ffffff' }};
@@ -212,7 +212,7 @@
       grid-template-columns: 1fr;
     }
   }
-{% endstylesheet %}
+</style>
 
 {% schema %}
 {

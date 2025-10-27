@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 
-{% stylesheet %}
+<style>
   .faq {
     padding: 4rem 2rem;
     background-color: {{ section.settings.background_color | default: '#ffffff' }};
@@ -168,7 +168,7 @@ document.addEventListener('DOMContentLoaded', function() {
     .faq__question { padding: 1rem; font-size: 1rem; }
     .faq__answer-content { padding: 0 1rem 1rem 1rem; }
   }
-{% endstylesheet %}
+</style>
 
 {% schema %}
 {

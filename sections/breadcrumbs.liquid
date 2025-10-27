@@ -6,7 +6,7 @@
   {% render 'breadcrumbs' %}
 </nav>
 
-{% stylesheet %}
+<style>
   .breadcrumbs-section {
     padding: 1rem 0;
     background-color: {{ section.settings.background_color | default: 'transparent' }};
@@ -17,7 +17,7 @@
     margin: 0 auto;
     padding: 0 var(--page-margin);
   }
-{% endstylesheet %}
+</style>
 
 {% schema %}
 {

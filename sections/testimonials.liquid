@@ -64,7 +64,7 @@
   {% render 'layout-css', section: section %}
 </style>
 
-{% stylesheet %}
+<style>
   .testimonials {
     padding: 4rem 2rem;
     background-color: {{ section.settings.background_color | default: '#f8f9fa' }};
@@ -176,7 +176,7 @@
     .testimonial__author { flex-direction: column; text-align: center; }
     .testimonial__details { text-align: center; }
   }
-{% endstylesheet %}
+</style>
 
 {% schema %}
 {
