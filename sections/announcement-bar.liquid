@@ -1,9 +1,8 @@
 {% capture announcement_copy %}
   {%- if section.settings.heading != blank -%}
     {%- if section.settings.link != blank -%}
-      <a href="{{ section.settings.link }}" class="announcement-bar__announcement announcement-bar__link link--with-arrow line-height--heading motion-reduce">
+      <a href="{{ section.settings.link }}" class="announcement-bar__announcement announcement-bar__link line-height--heading motion-reduce">
         {{ section.settings.heading | escape }}
-        {%- render 'icons', icon: 'arrow', size: '1em', class: 'link__arrow' -%}
       </a>
     {%- else -%}
       <span class="announcement-bar__announcement line-height--heading">
@@ -15,9 +14,8 @@
 
 {%- if section.settings.link != blank-%}
   {% capture announcement_copy_link_hidden %}
-    <a href="{{ section.settings.link }}" class="announcement-bar__announcement announcement-bar__link link--with-arrow line-height--heading motion-reduce" tabindex="-1">
+    <a href="{{ section.settings.link }}" class="announcement-bar__announcement announcement-bar__link line-height--heading motion-reduce" tabindex="-1">
       {{ section.settings.heading | escape }}
-      {%- render 'icons', icon: 'arrow', size: '1em', class: 'link__arrow' -%}
     </a>
   {% endcapture %}
 {%- endif -%}
@@ -32,23 +30,65 @@
 
 <style>
   .announcement-bar__link:focus-visible {
-    --box-shadow-color: hsla({{ section.settings.color_text.hue }}, {{ section.settings.color_text.saturation }}%, {{ section.settings.color_text.lightness }}%, 0.7);
+    --box-shadow-color: hsla({{ section.settings.color_link.hue }}, {{ section.settings.color_link.saturation }}%, {{ section.settings.color_link.lightness }}%, 0.7);
+    outline: 2px solid {{ section.settings.color_link }};
+    outline-offset: 2px;
   }
 
   .announcement-bar__link {
-    --color-link: {{ section.settings.color_text }};
-    --color-link-raw: {{ section.settings.color_text.hue }}, {{ section.settings.color_text.saturation }}%, {{ section.settings.color_text.lightness }}%;
+    --color-link: {{ section.settings.color_link }};
+    --color-link-raw: {{ section.settings.color_link.hue }}, {{ section.settings.color_link.saturation }}%, {{ section.settings.color_link.lightness }}%;
+    color: {{ section.settings.color_link }} !important;
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+
+  .announcement-bar__link:hover,
+  .announcement-bar__link:focus {
+    color: {{ section.settings.color_link }} !important;
+    text-decoration: underline;
+    opacity: 0.8;
   }
 
   .announcement-bar__marquee {
     --marquee-speed: {{ marquee_speed }}s;
     --marquee-gap: {{ section.settings.marquee_gap }}px;
   }
+
+  .announcement-bar__close {
+    position: absolute;
+    top: 50%;
+    right: 1rem;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: {{ section.settings.color_text }};
+    cursor: pointer;
+    font-size: 1.2em;
+    padding: 0.25rem;
+    line-height: 1;
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
+  }
+
+  .announcement-bar__close:hover,
+  .announcement-bar__close:focus {
+    opacity: 1;
+  }
+
+  .announcement-bar__close:focus-visible {
+    outline: 2px solid {{ section.settings.color_text }};
+    outline-offset: 2px;
+  }
+
+  .announcement-bar.hidden {
+    display: none;
+  }
 </style>
 
 {%- if section.settings.show_announcement_bar -%}
-  <div class="announcement-bar section-{{ section.id }}" id="announcement-bar" role="region" aria-label="Announcement"
-    <div class="announcement-bar__container copy--{{ section.settings.text_size }} {% if section.settings.font_style == 'heading' %}type--heading{% elsif section.settings.font_style == 'accent' %}type--accent{% endif %} {% if section.settings.font_bold %}copy--bold{% endif %}" style="background: {{ section.settings.color_bg }}; color: {{ section.settings.color_text }}; padding-top: {{ section.settings.padding_top_bottom }}px; padding-bottom: {{ section.settings.padding_top_bottom }}px;">
+  <div class="announcement-bar section-{{ section.id }}" id="announcement-bar" role="region" aria-label="Announcement">
+    <div class="announcement-bar__container copy--{{ section.settings.text_size }} {% if section.settings.font_style == 'heading' %}type--heading{% elsif section.settings.font_style == 'accent' %}type--accent{% endif %} {% if section.settings.font_bold %}copy--bold{% endif %}" style="background: {{ section.settings.color_bg }}; color: {{ section.settings.color_text }}; padding-top: {{ section.settings.padding_top_bottom }}px; padding-bottom: {{ section.settings.padding_top_bottom }}px; position: relative;">
       {%- if section.settings.enable_marquee -%}
         <full-width-element class="announcement-bar__marquee marquee marquee--pause-on-hover" id="announcement-bar">
           <div class="marquee__content">
@@ -94,8 +134,23 @@
           {{ announcement_copy }}
         </div>
       {%- endif -%}
+      
+      {%- if section.settings.show_close_button -%}
+        <button class="announcement-bar__close" aria-label="Close announcement" onclick="this.closest('.announcement-bar').classList.add('hidden'); localStorage.setItem('announcement-bar-hidden', 'true');">
+          ×
+        </button>
+      {%- endif -%}
     </div>
   </div>
+
+  {%- if section.settings.show_close_button -%}
+    <script>
+      // Check if announcement was previously closed
+      if (localStorage.getItem('announcement-bar-hidden') === 'true') {
+        document.getElementById('announcement-bar').classList.add('hidden');
+      }
+    </script>
+  {%- endif -%}
 
   <style>
     {% render 'layout-css', section: section %}
@@ -113,6 +168,13 @@
       "id": "show_announcement_bar",
       "label": "Show Announcement Bar",
       "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_close_button",
+      "label": "Show Close Button",
+      "default": false,
+      "info": "Allow users to dismiss the announcement bar"
     },
     {
       "type": "text",
@@ -136,6 +198,13 @@
       "id": "color_text",
       "label": "Text Color",
       "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "color_link",
+      "label": "Link Color (when different from text)",
+      "default": "#000000",
+      "info": "Color for announcement text when it's a clickable link"
     },
     {
       "type": "select",
