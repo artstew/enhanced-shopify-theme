@@ -1,0 +1,206 @@
+{% comment %}
+  Product Title Block
+  Displays a product title with comprehensive styling controls
+{% endcomment %}
+
+{% liquid
+  assign selected_product = all_products[block.settings.product_handle]
+  assign title_tag = block.settings.title_tag | default: 'h1'
+  assign text_align = block.settings.text_alignment | default: 'left'
+%}
+
+{% comment %} Include visibility controls {% endcomment %}
+{% render 'visibility-controls', block: block, assign_var: 'visibility_classes' %}
+
+<style>
+  /* Product Title Block {{ block.id }} */
+  .product-title-wrapper-{{ block.id }} {
+    width: 100%;
+    text-align: {{ text_align }};
+    margin-top: {{ block.settings.margin_top | default: 0 }}px;
+    margin-bottom: {{ block.settings.margin_bottom | default: 16 }}px;
+    margin-left: {{ block.settings.margin_left | default: 0 }}px;
+    margin-right: {{ block.settings.margin_right | default: 0 }}px;
+  }
+  
+  .product-title-wrapper-{{ block.id }} .product-title {
+    margin: 0;
+    line-height: 1.2;
+    color: {{ block.settings.text_color | default: '#333333' }};
+    font-size: {{ block.settings.font_size | default: 32 }}px;
+    
+    {% if block.settings.font_family != blank %}
+      {% assign font_family = block.settings.font_family %}
+      font-family: {{ font_family.family }}, {{ font_family.fallback_families }};
+      font-weight: {{ font_family.weight }};
+      font-style: {{ font_family.style }};
+    {% endif %}
+  }
+  
+  .product-title-wrapper-{{ block.id }} .product-title--placeholder {
+    color: #999;
+    font-style: italic;
+  }
+  
+  @media (max-width: 767px) {
+    .product-title-wrapper-{{ block.id }} .product-title {
+      font-size: calc({{ block.settings.font_size | default: 32 }}px * 0.8);
+    }
+  }
+
+  {% if block.settings.custom_css != blank %}
+    /* Custom CSS */
+    {{ block.settings.custom_css }}
+  {% endif %}
+</style>
+
+{% if selected_product %}
+  <div class="product-title-wrapper-{{ block.id }}{{ visibility_classes }}" {{ block.shopify_attributes }}>
+    <{{ title_tag }} class="product-title">
+      {{ selected_product.title }}
+    </{{ title_tag }}>
+    <!-- DEBUG: Block ID is {{ block.id }}, Font: {{ block.settings.font_family.family }}, Size: {{ block.settings.font_size }}px -->
+  </div>
+{% else %}
+  <div class="product-title-wrapper-{{ block.id }} product-title-wrapper--placeholder{{ visibility_classes }}" {{ block.shopify_attributes }}>
+    <{{ title_tag }} class="product-title product-title--placeholder">
+      Select a product to display its title
+    </{{ title_tag }}>
+    <!-- DEBUG: Block ID is {{ block.id }}, Font: {{ block.settings.font_family.family }}, Size: {{ block.settings.font_size }}px -->
+  </div>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Product Title",
+  "settings": [
+    {
+      "type": "product",
+      "id": "product_handle",
+      "label": "Select Product",
+      "info": "Choose which product's title to display"
+    },
+    {
+      "type": "select",
+      "id": "title_tag",
+      "label": "HTML Tag",
+      "default": "h1",
+      "options": [
+        { "value": "h1", "label": "H1" },
+        { "value": "h2", "label": "H2" },
+        { "value": "h3", "label": "H3" },
+        { "value": "h4", "label": "H4" },
+        { "value": "h5", "label": "H5" },
+        { "value": "h6", "label": "H6" },
+        { "value": "p", "label": "Paragraph" },
+        { "value": "div", "label": "Div" }
+      ],
+      "info": "Choose the HTML tag for SEO and accessibility"
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Text Alignment",
+      "default": "left",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ]
+    },
+    {
+      "type": "font_picker",
+      "id": "font_family",
+      "label": "Font Family",
+      "default": "assistant_n4",
+      "info": "Choose a custom font family for the product title"
+    },
+    {
+      "type": "header",
+      "content": "Styling Options"
+    },
+    {
+      "type": "range",
+      "id": "font_size",
+      "label": "Font Size (pixels)",
+      "min": 12,
+      "max": 72,
+      "step": 1,
+      "unit": "px",
+      "default": 32,
+      "info": "Set the font size for the product title"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#333333",
+      "info": "Choose the color for the product title text"
+    },
+    {
+      "type": "header",
+      "content": "Spacing Controls"
+    },
+    {
+      "type": "range",
+      "id": "margin_top",
+      "label": "Top Margin",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 0,
+      "info": "Space above the title"
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom",
+      "label": "Bottom Margin",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 16,
+      "info": "Space below the title"
+    },
+    {
+      "type": "range",
+      "id": "margin_left",
+      "label": "Left Margin",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 0,
+      "info": "Space to the left of the title"
+    },
+    {
+      "type": "range",
+      "id": "margin_right",
+      "label": "Right Margin",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 0,
+      "info": "Space to the right of the title"
+    },
+    {
+      "type": "header",
+      "content": "Advanced Styling"
+    },
+    {
+      "type": "textarea",
+      "id": "custom_css",
+      "label": "Custom CSS",
+      "info": "Add custom CSS for advanced styling. Target with .product-title-wrapper-[block-id]",
+      "placeholder": "/* Example: */\n.product-title {\n  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);\n}"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Title"
+    }
+  ]
+}
+{% endschema %}
